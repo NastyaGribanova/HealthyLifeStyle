@@ -1,0 +1,35 @@
+.text {
+    color: #28a745;
+}
+
+.head-text {
+    padding: 0 10px 5px 20px;
+    color: #28a745;
+    font-size: 30px;
+}
+
+.main-text {
+    padding: 0 10px 10px 10px;
+    color: #28a745;
+    font-size: 20px;
+}
+.login-body {
+    background-image: url("./background.png");
+}
+
+.login {
+    margin-top: 120pt;
+}
+
+.background-form {
+    background: white;
+}
+
+.text-form {
+    color: #28a745;
+}
+
+.card {
+    border-radius: 20px;
+    border: #28a745 2px solid;
+}
