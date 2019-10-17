@@ -29,6 +29,7 @@
     color: #28a745;
 }
 
-.border {
-    border-radius: 10px;
+.card {
+    border-radius: 20px;
+    border: #28a745 2px solid;
 }
