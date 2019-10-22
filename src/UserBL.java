@@ -45,7 +45,7 @@ public class UserBL {
             response.sendRedirect("/profile");
         } else {
             //что-то делается, если он еще не зарегистрировался
-            response.sendRedirect("/register");
+            response.sendRedirect("/registration");
         }
     }
 
@@ -53,14 +53,15 @@ public class UserBL {
     void register (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        String repeatPassword = request.getParameter("password2");
 
         User user = new User(login, hashPassword.getHash(password));
         if (userDAO.create(user)){
             //при нажатии на кнопку регистрации отправляет на страницу авторизации
-            response.sendRedirect("/loginPage");
+            response.sendRedirect("/login");
         } else {
             //что-то делается если он уже зарегистрирован
-            response.sendRedirect("/loginPage");
+            response.sendRedirect("/login");
         }
     }
 }
