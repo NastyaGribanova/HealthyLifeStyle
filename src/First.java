@@ -1,6 +1,7 @@
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
 
 /*
@@ -9,7 +10,10 @@ import java.io.IOException;
 
 public class First extends javax.servlet.http.HttpServlet {
 
-    BL businessLogic = new BL();
+    UserBL businessLogic = new UserBL();
+
+    public First() throws SQLException {
+    }
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws IOException {
         //при нажатии на кнопку отправляй на страницу авторизации
