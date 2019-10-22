@@ -24,7 +24,7 @@
                 <p> <input type="submit" class="btn btn-outline-success" value="log in"
                            name="login">  </p>
                 <p><input type="checkbox" name="save" value="save"> Remember me?</p>
-                Still not with us? <a href="#" class="badge badge-success">Join</a>
+                Still not with us? <a href="/registration" class="badge badge-success">Join</a>
             </div>
         </div>
     </form>
