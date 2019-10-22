@@ -1,5 +1,7 @@
 .text {
     color: #28a745;
+    padding: 20px 20px 0px;
+    font-weight: bold;
 }
 
 .head-text {
@@ -17,8 +19,12 @@
     background-image: url("./background.png");
 }
 
+.profile-body {
+    background-image: url("./back2.png");
+}
+
 .login {
-    margin-top: 120pt;
+    margin-top: 100pt;
 }
 
 .background-form {
@@ -33,3 +39,22 @@
     border-radius: 20px;
     border: #28a745 2px solid;
 }
+
+.card-profile {
+    border-radius: 20px;
+    border: #28a745 2px solid;
+    padding: 20px 0px 10px;
+    /*background-image: url("background.png");*/
+}
+
+.button {
+    width: 100%;
+    /*margin-top: 500px;*/
+    background-image: url("background.png");
+}
+
+/*.input[type="text"] {*/
+    /*color: #28a745;*/
+    /*border-radius: 10px;*/
+    /*border: #28a745 2px solid;*/
+/*}*/
