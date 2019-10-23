@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /*
     Страничка регистрации
  */
-@WebServlet(name = "Register")
+@WebServlet("/registration")
 public class Register extends HttpServlet {
 
     UserBL businessLogic = new UserBL();

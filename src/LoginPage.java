@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /*
     Страничка логина
  */
-@WebServlet(name = "LoginPage")
+@WebServlet("/login")
 public class LoginPage extends HttpServlet {
 
     UserBL businessLogic = new UserBL();
