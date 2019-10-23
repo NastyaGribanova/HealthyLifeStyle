@@ -16,13 +16,13 @@
     <form method="post" >
         <div class="card bg-light mb-3"  style="width: 350px;" >
             <div class="card-body text">
-                <p> <input placeholder="Login" type="text" name="loginText" class="text-form">  </p>
-                <p> <input placeholder="E-mail" type="text" name="emailText" >  </p>
-                <p><input placeholder="Password" type="password" name="password">  </p>
+                <p> <input placeholder="Login" type="text" name="loginText" class="text-form" required>  </p>
+                <p> <input placeholder="E-mail" type="text" name="emailText" required>  </p>
+                <p><input placeholder="Password" type="password" name="password" required>  </p>
+                <p><input placeholder="Password again" type="password" name="password2" required>  </p>
                 <p>Password rules:</p>
                 <p>- Should include more than 6 characters</p>
                 <p>- Should include at least 1 number and at least 1 letter</p>
-                <p><input placeholder="Password again" type="password" name="password2">  </p>
                 <p> <input type="submit" class="btn btn-outline-success" value="Sign up"
                            name="signUp">  </p>
             </div>

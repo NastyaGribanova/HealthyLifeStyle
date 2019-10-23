@@ -20,7 +20,9 @@
 }
 
 .profile-body {
-    background-image: url("./back2.png");
+    background-image: url("./slider.png");
+    /*width: 600px;*/
+    /*height: 200px;*/
 }
 
 .login {

@@ -1,32 +1,23 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Len
-  Date: 22.10.2019
-  Time: 13:05
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Profile</title>
-</head>
-<body>
-<html><head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <title>Profile</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="style.css" rel="stylesheet">
-    <style type="text/css"></style></head>
-<body class="main-text profile-body">
+    <script type="application/javascript" src="js/forProfile.js"></script>
+    <style type="text/css"></style>
+</head>
+<body class="main-text profile-body" onload="getDate()">
 
 <div class="card bg-light mb-3 head-text" style="width: 250px;  margin-top: 50pt;">Pirojok.007</div>
 
 <div>
     <form method="post">
         <div class="card bg-light mb-3 card-profile" style="width: 200px;  margin-top: 80pt;">
-            <div class="card-header">General information</div>
+            <div class="card-header text">General information</div>
             <div class="card-body text">
                 <p>Age = </p>
 
@@ -42,10 +33,10 @@
     </form>
 </div>
 
-<div>
+<div >
     <form method="post">
         <div class="card bg-light mb-3 card-profile" style="width: 500px;   position: absolute; top: 170pt; left: 50%">
-            <div class="card-header">Daily information</div>
+            <div class="card-header text" id="date"></div>
             <div class="card-body text">
                 Sleep time = <input name="sleepTime" type="text">
                 <input name="saveSleepTime" class="btn btn-outline-success" type="submit" value="Save">
@@ -56,9 +47,9 @@
     </form>
 </div>
 
-<p> <input name="exercises" class="btn btn-outline-success button" type="submit" value="Receive exercises">  </p>
+<p> <input name="exercises" onclick="showSlider()" class="btn btn-outline-success button" type="submit" value="Receive exercises">  </p>
 
-<div class=" text">
+<div id="slider"  hidden>
     <div class="carousel slide pointer-event" id="carouselExampleCaptions" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0"></li>
@@ -67,26 +58,40 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item">
-                <img class="d-block w-100" alt="..." src="img4.png">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Exercises for legs</h5>
-                    <p>First exercise</p>
-                    <p>Second exercise</p>
-                    <p>Third exercise</p>
+                <img class="d-block w-100" alt="..." src="slider.png">
+                <div class="carousel-caption d-none d-md-block text">
+                    <h2 class="text">First exercises:</h2>
+                    <p>First exercise <input type="button" value="Do" onclick="showDescription(1)" class="btn btn-outline-success" name="doExercise1"></p>
+                    <p id="description1" hidden>Very very very good exercise 1</p>
+                    <p>Second exercise <input type="button" value="Do" onclick="showDescription(2)" class="btn btn-outline-success" name="doExercise2"></p>
+                    <p id="description2" hidden>Very very very good exercise 2</p>
+                    <p>Third exercise <input type="button" value="Do" onclick="showDescription(3)" class="btn btn-outline-success" name="doExercise3"></p>
+                    <p id="description3" hidden>Very very very good exercise 3</p>
+
                 </div>
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" alt="..." src="img4.png">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Second slide label</h5>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <img class="d-block w-100" alt="..." src="slider.png">
+                <div class="carousel-caption d-none d-md-block text">
+                    <h2 class="text">Second exercises:</h2>
+                    <p>First exercise <input type="button" value="Do" onclick="showDescription(4)" class="btn btn-outline-success" name="doExercise1"></p>
+                    <p id="description4" hidden>Very very very good exercise 1</p>
+                    <p>Second exercise <input type="button" value="Do" onclick="showDescription(5)" class="btn btn-outline-success" name="doExercise2"></p>
+                    <p id="description5" hidden>Very very very good exercise 2</p>
+                    <p>Third exercise <input type="button" value="Do" onclick="showDescription(6)" class="btn btn-outline-success" name="doExercise3"></p>
+                    <p id="description6" hidden>Very very very good exercise 3</p>
                 </div>
             </div>
             <div class="carousel-item active">
-                <img class="d-block w-100" alt="..." src="img4.png">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Third slide label</h5>
-                    <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                <img class="d-block w-100" alt="..." src="slider.png">
+                <div class="carousel-caption d-none d-md-block text">
+                    <h2 class="text">Third exercises:</h2>
+                    <p>First exercise <input type="button" value="Do" onclick="showDescription(7)" class="btn btn-outline-success" name="doExercise1"></p>
+                    <p id="description7" hidden>Very very very good exercise 1</p>
+                    <p>Second exercise <input type="button" value="Do" onclick="showDescription(8)" class="btn btn-outline-success" name="doExercise2"></p>
+                    <p id="description8" hidden>Very very very good exercise 2</p>
+                    <p>Third exercise <input type="button" value="Do" onclick="showDescription(9)" class="btn btn-outline-success" name="doExercise3"></p>
+                    <p id="description9" hidden>Very very very good exercise 3</p>
                 </div>
             </div>
         </div>
@@ -108,7 +113,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"></script>
 
 
-
-</body></html>
 </body>
 </html>
