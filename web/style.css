@@ -1,0 +1,62 @@
+.text {
+    color: #28a745;
+    padding: 20px 20px 0px;
+    font-weight: bold;
+}
+
+.head-text {
+    padding: 0 10px 5px 20px;
+    color: #28a745;
+    font-size: 30px;
+}
+
+.main-text {
+    padding: 0 10px 10px 10px;
+    color: #28a745;
+    font-size: 20px;
+}
+.login-body {
+    background-image: url("./background.png");
+}
+
+.profile-body {
+    background-image: url("./slider.png");
+    /*width: 600px;*/
+    /*height: 200px;*/
+}
+
+.login {
+    margin-top: 100pt;
+}
+
+.background-form {
+    background: white;
+}
+
+.text-form {
+    color: #28a745;
+}
+
+.card {
+    border-radius: 20px;
+    border: #28a745 2px solid;
+}
+
+.card-profile {
+    border-radius: 20px;
+    border: #28a745 2px solid;
+    padding: 20px 0px 10px;
+    /*background-image: url("background.png");*/
+}
+
+.button {
+    width: 100%;
+    /*margin-top: 500px;*/
+    background-image: url("background.png");
+}
+
+/*.input[type="text"] {*/
+    /*color: #28a745;*/
+    /*border-radius: 10px;*/
+    /*border: #28a745 2px solid;*/
+/*}*/
