@@ -15,14 +15,9 @@ public class Register extends HttpServlet {
 
     UserBL businessLogic = new UserBL();
 
-    public Register() throws SQLException {
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             businessLogic.register(request, response);
-        } catch (SQLException e) {
-            e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

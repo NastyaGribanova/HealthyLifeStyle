@@ -9,12 +9,9 @@ import java.sql.SQLException;
     Страничка логина
  */
 @WebServlet("/login")
-public class LoginPage extends HttpServlet {
+public class Login extends HttpServlet {
 
     UserBL businessLogic = new UserBL();
-
-    public LoginPage() throws SQLException {
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {

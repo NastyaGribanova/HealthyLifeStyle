@@ -12,9 +12,6 @@ public class UserBL {
     UserDAO userDAO = new UserDAO();
     HashPassword hashPassword = new HashPassword();
 
-    public UserBL() throws SQLException {
-    }
-
     //Проверка на существование кук
     public boolean checkCookie(Cookie[] cookies){
         for (Cookie cookie : cookies) {
@@ -50,18 +47,23 @@ public class UserBL {
     }
 
     //метод doPost для страницы регистрации
-    void register (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException, NoSuchAlgorithmException {
+    void register (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NoSuchAlgorithmException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String repeatPassword = request.getParameter("password2");
-
-        User user = new User(login, hashPassword.getHash(password));
-        if (userDAO.create(user)){
-            //при нажатии на кнопку регистрации отправляет на страницу авторизации
-            response.sendRedirect("/login");
-        } else {
-            //что-то делается если он уже зарегистрирован
-            response.sendRedirect("/login");
+        if (password.length() < 6){
+            request.setAttribute("length", "Should include more than 6 characters");
         }
+        if (password.equals(repeatPassword)) {
+            User user = new User(login, hashPassword.getHash(password));
+            if (userDAO.create(user)) {
+                //при нажатии на кнопку регистрации отправляет на страницу авторизации
+                response.sendRedirect("/login");
+            } else {
+                //если уже зарегистрирован
+                request.setAttribute("isRegistrated", "You have already had an account");
+                response.sendRedirect("/login");
+            }
+        } else request.setAttribute("exception", "passwords are not equals ");
     }
 }
