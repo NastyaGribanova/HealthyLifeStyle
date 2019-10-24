@@ -11,13 +11,14 @@ function showSlider() {
     }
 }
 
+var isClickedButton = false;
 function showDescription(n) {
     var description = document.getElementById("description" + n);
-    if(!isClicked){
-        isClicked = true;
+    if(!isClickedButton){
+        isClickedButton = true;
         description.hidden = false;
     } else {
-        isClicked = false;
+        isClickedButton = false;
         description.hidden = true;
     }
 }
