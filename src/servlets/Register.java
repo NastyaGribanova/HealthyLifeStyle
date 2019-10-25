@@ -1,3 +1,7 @@
+package servlets;
+
+import services.UserBL;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -5,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 
 /*
     Страничка регистрации
@@ -13,7 +16,7 @@ import java.sql.SQLException;
 @WebServlet("/registration")
 public class Register extends HttpServlet {
 
-    UserBL businessLogic = new UserBL();
+    private UserBL businessLogic = new UserBL();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

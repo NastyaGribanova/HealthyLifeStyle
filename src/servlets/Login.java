@@ -1,3 +1,7 @@
+package servlets;
+
+import services.UserBL;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -11,7 +15,7 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class Login extends HttpServlet {
 
-    UserBL businessLogic = new UserBL();
+    private UserBL businessLogic = new UserBL();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {
