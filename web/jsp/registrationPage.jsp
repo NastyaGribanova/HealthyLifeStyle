@@ -23,7 +23,7 @@
                 <t:length/>
                 <p><input placeholder="Password again" type="password" name="password2" required>  </p>
                 <t:isEquals/>
-
+                <p> <input type="submit" class="btn btn-outline-success" value="Sign up"  name="signUp">  </p>
             </div>
         </div>
     </form>
