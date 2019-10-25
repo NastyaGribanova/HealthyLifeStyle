@@ -7,16 +7,18 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//проверь проверку на пароль
+
 public class UserDAO implements UserCrudDAO {
 
-    private final Connection connection = new DataBase().getConnection();
+    private final Connection connection = DataBase.getInstance().getConnection();
 
     @Override
     public boolean create(User user) {
-        Statement statement = null;
+        Statement statement;
         try {
             statement = connection.createStatement();
-            if (!isExist(user.getLogin(), user.getPassword())) {
+            if (!isExist(user.getLogin())) {
                 try {
                     statement.executeUpdate("INSERT INTO user (login, password)" +
                             "VALUES ('" + user.getLogin() + "','" + user.getPassword() + "')");
@@ -28,6 +30,8 @@ public class UserDAO implements UserCrudDAO {
             } else return false;
         } catch (SQLException e) {
             throw new IllegalStateException(e);
+        } finally {
+            DataBase.getInstance().closeConnection();
         }
     }
 
@@ -47,17 +51,18 @@ public class UserDAO implements UserCrudDAO {
     }
 
     //проверка на существование логина и пароля в бд
-    public boolean isExist(String login, String password) {
-        Statement statement = null;
+    public boolean isExist(String login) {
+        Statement statement;
         try {
             statement = connection.createStatement();
-            if (statement.executeQuery("SELECT * FROM user WHERE login = " + login +
-                    " AND password = " + password + "''").next()) {
+            if (statement.executeQuery("SELECT * FROM user WHERE login = " + login ).next()) {
                 return true;
             } else return false;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalArgumentException(e);
+        } finally {
+            DataBase.getInstance().closeConnection();
         }
     }
 }

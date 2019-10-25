@@ -13,7 +13,6 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 
 public class UserBL {
 
@@ -36,7 +35,7 @@ public class UserBL {
         HttpSession session = request.getSession(true);
 
         //проверка логина и пароля на совместимость с бд
-        if (userDAO.isExist(login, getHash(password))) {
+        if (userDAO.isExist(login)) {
             session.setAttribute("login", login);
             session.setAttribute("password", getHash(password));
             //Создание кук
@@ -60,8 +59,7 @@ public class UserBL {
         String repeatPassword = request.getParameter("password2");
         if (password.length() < 6) {
             request.setAttribute("length", "Should include more than 6 characters");
-        }
-        if (password.equals(repeatPassword)) {
+        } else if (password.equals(repeatPassword)) {
             User user = new User(login, getHash(password));
             if (userDAO.create(user)) {
                 //при нажатии на кнопку регистрации отправляет на страницу авторизации
