@@ -1,5 +1,7 @@
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpSession;
+package servlets;
+
+import services.UserBL;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -10,7 +12,7 @@ import java.sql.SQLException;
 
 public class First extends javax.servlet.http.HttpServlet {
 
-    UserBL businessLogic = new UserBL();
+    private UserBL businessLogic = new UserBL();
 
     public First() throws SQLException {
     }
@@ -22,9 +24,9 @@ public class First extends javax.servlet.http.HttpServlet {
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         //если авторизация есть, отправляй в личный кабинет
-        if(request.getSession(false) != null) {
+        if (request.getSession(false) != null) {
             response.sendRedirect("/login");
-        } else if (businessLogic.checkCookie(request.getCookies())){
+        } else if (businessLogic.checkCookie(request.getCookies())) {
             response.sendRedirect("/profile");
         } else {
             request.getRequestDispatcher("jsp/firstPage.jsp").forward(request, response);

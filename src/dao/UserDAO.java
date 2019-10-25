@@ -1,16 +1,21 @@
-import javax.xml.crypto.Data;
+package dao;
+
+import models.User;
+import util.DataBase;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class UserDAO implements CrudDAO{
+public class UserDAO implements UserCrudDAO {
+
+    private final Connection connection = new DataBase().getConnection();
 
     @Override
-    public boolean create(User user)  {
+    public boolean create(User user) {
         Statement statement = null;
         try {
-            statement = DataBase.getConnection().createStatement();
+            statement = connection.createStatement();
             if (!isExist(user.getLogin(), user.getPassword())) {
                 try {
                     statement.executeUpdate("INSERT INTO user (login, password)" +
@@ -32,21 +37,21 @@ public class UserDAO implements CrudDAO{
     }
 
     @Override
-    public void update()  {
+    public void update() {
 
     }
 
     @Override
-    public void delete()  {
+    public void delete() {
 
     }
 
     //проверка на существование логина и пароля в бд
-    public boolean isExist(String login, String password)  {
+    public boolean isExist(String login, String password) {
         Statement statement = null;
         try {
-            statement = DataBase.getConnection().createStatement();
-            if(statement.executeQuery("SELECT * FROM user WHERE login = " + login +
+            statement = connection.createStatement();
+            if (statement.executeQuery("SELECT * FROM user WHERE login = " + login +
                     " AND password = " + password + "''").next()) {
                 return true;
             } else return false;
