@@ -18,7 +18,7 @@
         <div class="card bg-light mb-3"  style="width: 350px;" >
             <div class="card-body">
                 <p> <input placeholder="Login" type="text" name="login" class="text-form" required>  </p>
-                <t:isExist/>
+                <%--<t:isExist/>--%>
                 <p> <input placeholder="E-mail" type="text" name="email" required>  </p>
                 <p><input placeholder="Password" type="password" name="password" id="password" oninput="checkPassword()" required>  </p>
                 <p id="textLessThan6" style="color: red" hidden >Password should have more than 6 characters</p>
@@ -27,6 +27,7 @@
                 <p><input placeholder="Password again" type="password" name="password2" required>  </p>
                 <t:isEquals/>
                 <p> <input type="submit" class="btn btn-outline-success" value="Sign up"  name="signUp">  </p>
+                Back to log in? <a href="/login" class="badge badge-success">Log in</a>
             </div>
         </div>
     </form>
