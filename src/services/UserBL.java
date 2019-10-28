@@ -13,6 +13,8 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserBL {
 
@@ -29,13 +31,15 @@ public class UserBL {
     }
 
     //метод doPost на странице авторизации
-    public void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, NoSuchAlgorithmException {
+    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
+        List<String> errors = new ArrayList<>();
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         HttpSession session = request.getSession(true);
 
         //проверка логина и пароля на совместимость с бд
-        if (userDAO.isExist(login)) {
+        if (userDAO.isExist(login, getHash(password))) {
             session.setAttribute("login", login);
             session.setAttribute("password", getHash(password));
             //Создание кук
@@ -47,6 +51,7 @@ public class UserBL {
             //при нажатии на кнопку авторизоваться отправляет на страницу профиля
             response.sendRedirect("/profile");
         } else {
+
             //что-то делается, если он еще не зарегистрировался
             response.sendRedirect("/registration");
         }
@@ -54,22 +59,29 @@ public class UserBL {
 
     //метод doPost для страницы регистрации
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
+
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String repeatPassword = request.getParameter("password2");
         if (password.length() < 6) {
-            request.setAttribute("length", "Should include more than 6 characters");
         } else if (password.equals(repeatPassword)) {
-            User user = new User(login, getHash(password));
-            if (userDAO.create(user)) {
-                //при нажатии на кнопку регистрации отправляет на страницу авторизации
-                response.sendRedirect("/login");
-            } else {
-                //если уже зарегистрирован
-                request.setAttribute("isRegistrated", "You have already had an account");
-                response.sendRedirect("/login");
-            }
-        } else request.setAttribute("exception", "passwords are not equals ");
+            if (!userDAO.isExist(login)) {
+                User user = new User(login, getHash(password));
+
+                if (userDAO.create(user)) {
+                    //при нажатии на кнопку регистрации отправляет на страницу авторизации
+                    response.sendRedirect("/login");
+                } else {
+                    //если уже зарегистрирован
+                    request.setAttribute("isRegistrated", "You have already had an account");
+                    response.sendRedirect("/login");
+                }
+                //если логин уже существует
+                request.setAttribute("isExist", "false");
+            } else request.setAttribute("isExist", "true");
+            //пароли равны
+            request.setAttribute("isEquals", "false");
+        } else request.setAttribute("isEquals", "true");
     }
 
     private String getHash(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException {

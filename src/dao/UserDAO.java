@@ -65,4 +65,19 @@ public class UserDAO implements UserCrudDAO {
             DataBase.getInstance().closeConnection();
         }
     }
+
+    public boolean isExist (String login, String password) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+            if (statement.executeQuery("SELECT * FROM user WHERE login = " + login + "SELECT * FROM user WHERE password = " + password ).next()) {
+                return true;
+            } else return false;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException(e);
+        } finally {
+            DataBase.getInstance().closeConnection();
+        }
+    }
 }
