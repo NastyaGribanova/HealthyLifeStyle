@@ -27,7 +27,7 @@
                 <p><input placeholder="Password again" type="password" name="password2" required>  </p>
                 <t:isEquals/>
                 <p> <input type="submit" class="btn btn-outline-success" value="Sign up"  name="signUp">  </p>
-                Back to log in? <a href="/login" class="badge badge-success">Log in</a>
+                 <a href="/login" class="badge badge-success">I have already had an account</a>
             </div>
         </div>
     </form>
