@@ -4,24 +4,26 @@ import models.User;
 import util.DataBase;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-//проверь проверку на пароль
-
 public class UserDAO implements UserCrudDAO {
 
-    private final Connection connection = DataBase.getInstance().getConnection();
+    private Connection connection;
 
     @Override
     public boolean create(User user) {
-        Statement statement;
+        PreparedStatement statement;
+        connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.createStatement();
+            statement = connection.prepareStatement("INSERT INTO user (login, password)" +
+                    "VALUES (?,?)");
+            statement.setString(1, user.getLogin());
+            statement.setString(2, user.getPassword());
             if (!isExist(user.getLogin())) {
                 try {
-                    statement.executeUpdate("INSERT INTO user (login, password)" +
-                            "VALUES ('" + user.getLogin() + "','" + user.getPassword() + "')");
+                    statement.executeUpdate();
                 } catch (SQLException e) {
                     System.out.println("Exception during method saveLogin");
                     throw new IllegalArgumentException();
@@ -31,7 +33,7 @@ public class UserDAO implements UserCrudDAO {
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         } finally {
-            DataBase.getInstance().closeConnection();
+            //DataBase.getInstance().closeConnection();
         }
     }
 
@@ -52,32 +54,35 @@ public class UserDAO implements UserCrudDAO {
 
     //проверка на существование логина и пароля в бд
     public boolean isExist(String login) {
-        Statement statement;
+        PreparedStatement statement;
+        connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.createStatement();
-            if (statement.executeQuery("SELECT * FROM user WHERE login = " + login ).next()) {
+            statement = connection.prepareStatement("SELECT * FROM user WHERE login = ?");
+            statement.setString(1, login);
+            if (statement.executeQuery().next()) {
                 return true;
             } else return false;
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalArgumentException(e);
-        } finally {
-            DataBase.getInstance().closeConnection();
         }
     }
 
-    public boolean isExist (String login, String password) {
-        Statement statement;
+    public boolean isExist(String login, String password) {
+        PreparedStatement statement;
+        connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.createStatement();
-            if (statement.executeQuery("SELECT * FROM user WHERE login = " + login + "SELECT * FROM user WHERE password = " + password ).next()) {
+            statement = connection.prepareStatement("SELECT * FROM user WHERE login = ? AND password = ?");
+            statement.setString(1, login);
+            statement.setString(2, password);
+            if (statement.executeQuery().next()) {
                 return true;
-            } else return false;
+            } else {
+                return false;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new IllegalArgumentException(e);
-        } finally {
-            DataBase.getInstance().closeConnection();
         }
     }
 }
