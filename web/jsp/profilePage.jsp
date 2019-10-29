@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,7 +11,9 @@
 </head>
 <body class="main-text profile-body" onload="getDate()">
 
-<div class="card bg-light mb-3 head-text" style="width: 250px;  margin-top: 50pt;">Pirojok.007</div>
+<nav class="nav" style="width: 100%; margin: 0; background: #28a745; color: white;">
+    <a class="nav-link active" style="font-weight: bold; font-size: 30px">Pirojok.007</a>
+</nav>
 
 <div>
     <form method="post">
@@ -35,13 +36,13 @@
 
 <div >
     <form method="post">
-        <div class="card bg-light mb-3 card-profile" style="width: 500px;   position: absolute; top: 170pt; left: 50%">
+        <div class="card bg-light mb-3 card-profile" style="width: 500px;   position: absolute; top: 125pt; left: 50%">
             <div class="card-header text" id="date"></div>
             <div class="card-body text">
                 Sleep time = <input name="sleepTime" type="text">
-                <input name="saveSleepTime" class="btn btn-outline-success" type="submit" value="Save">
+                <input name="saveSleepTime" id="saveSleepTime" class="btn btn-outline-success" type="submit" value="Save">
                 <p>  Pressure  =  <input name="pressure" type="text">
-                    <input name="savePressure" class="btn btn-outline-success" type="submit" value="Save"></p>
+                    <input name="savePressure" id="savePressure" class="btn btn-outline-success" type="submit" value="Save"></p>
             </div>
         </div>
     </form>
@@ -49,7 +50,7 @@
 
 <p> <input name="exercises" onclick="showSlider()" class="btn btn-outline-success button" type="submit" value="Receive exercises">  </p>
 
-<div id="slider"  hidden>
+<div id="slider" hidden>
     <div class="carousel slide pointer-event" id="carouselExampleCaptions" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0"></li>
@@ -57,7 +58,7 @@
             <li class="active" data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item">
+            <div class="carousel-item active">
                 <img class="d-block w-100" alt="..." src="slider.png">
                 <div class="carousel-caption d-none d-md-block text">
                     <h2 class="text">First exercises:</h2>
@@ -82,7 +83,7 @@
                     <p id="description6" hidden>Very very very good exercise 3</p>
                 </div>
             </div>
-            <div class="carousel-item active">
+            <div class="carousel-item">
                 <img class="d-block w-100" alt="..." src="slider.png">
                 <div class="carousel-caption d-none d-md-block text">
                     <h2 class="text">Third exercises:</h2>

@@ -20,7 +20,7 @@
     <form method="post" >
         <div class="card bg-light mb-3"  style="width: 350px;" >
             <div class="card-body">
-                <p> <input placeholder="Login" type="text" name="loginText" class="text-form" required>  </p>
+                <p> <input placeholder="Login" type="text" name="login" class="text-form" required>  </p>
                 <p><input placeholder="Password" type="password" name="password" required>  </p>
                 <p> <input type="submit" class="btn btn-outline-success" value="log in"
                            name="login">  </p>

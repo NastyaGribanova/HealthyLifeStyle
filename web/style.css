@@ -20,7 +20,7 @@
 }
 
 .profile-body {
-    background-image: url("./slider.png");
+    background-image: url("./sport2.png");
     /*width: 600px;*/
     /*height: 200px;*/
 }
@@ -46,17 +46,12 @@
     border-radius: 20px;
     border: #28a745 2px solid;
     padding: 20px 0px 10px;
-    /*background-image: url("background.png");*/
+    background-image: url("slider.png");
 }
 
 .button {
     width: 100%;
     /*margin-top: 500px;*/
-    background-image: url("background.png");
+    background-image: url("slider.png");
 }
 
-/*.input[type="text"] {*/
-    /*color: #28a745;*/
-    /*border-radius: 10px;*/
-    /*border: #28a745 2px solid;*/
-/*}*/
