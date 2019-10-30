@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 public class UserBL {
 
@@ -31,10 +32,7 @@ public class UserBL {
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        HttpSession session = request.getSession(true);
-        System.out.println(login);
-        System.out.println(password);
-
+        HttpSession session = request.getSession();
         //проверка логина и пароля на совместимость с бд
         if (userDAO.isExist(login, getHash(password))) {
             session.setAttribute("login", login);
@@ -71,13 +69,15 @@ public class UserBL {
                         response.sendRedirect("/login");
                     }
                 } else {
-                    request.setAttribute("isExist", "true");
-                    //пароли равны
-                    request.setAttribute("isEquals", "false");
+                    ArrayList<Boolean> isExist = new ArrayList<>();
+                    isExist.add(true);
+                    request.setAttribute("isExist", isExist);
                     response.sendRedirect("/registration");
                 }
-            }   else {
-                request.setAttribute("isEquals", "true");
+            } else {
+                ArrayList<Boolean> isExist = new ArrayList<>();
+                isExist.add(false);
+                request.setAttribute("isExist", isExist);
                 response.sendRedirect("/registration");
             }
         }

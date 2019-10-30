@@ -1,12 +1,7 @@
-<%@ tag import="com.sun.org.apache.xpath.internal.operations.Bool" %>
-<%@ taglib prefix="t" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ tag body-content="empty" %>
-<%@ attribute name="isExist" %>
-<% String answer = " ";
-    System.out.println(isExist);
-    if (isExist != null) {
-        if (Boolean.valueOf(isExist)) {
-            answer = "This login is already exist";
-        }
-    }%>
-<%= answer%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<p>
+<c:forEach var="isExist" items="${isExist}">
+    <p><c:out value="${isExist}"/></p>
+</c:forEach>
+</p>
