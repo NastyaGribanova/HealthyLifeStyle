@@ -12,7 +12,7 @@
 <body class="main-text profile-body" onload="getDate()">
 
 <nav class="nav" style="width: 100%; margin: 0; background: #28a745; color: white;">
-    <a class="nav-link active" style="font-weight: bold; font-size: 30px">Pirojok.007</a>
+    <a class="nav-link active" style="font-weight: bold; font-size: 30px"><%=request.getSession().getAttribute("login")%></a>
     <li class="nav-item">
         <input name="logout" class="btn btn-outline-success button" style="width: 100px; margin-left: 900px; margin-top: 10px" type="submit" value="Log out">
     </li>
