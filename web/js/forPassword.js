@@ -21,3 +21,19 @@ function checkPassword() {
         textLetters.hidden = false;
     }
 }
+
+function checkEquals() {
+    var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
+    var textEquals = document.getElementById("textEquals");
+    var textEqualsCorrect = document.getElementById("textEqualsCorrect");
+
+    if (password2 !== password){
+        textEquals.hidden = false;
+        textEqualsCorrect.hidden = true;
+    } else {
+        textEquals.hidden = true;
+        textEqualsCorrect.hidden = false;
+    }
+
+}
