@@ -24,7 +24,9 @@
                 <p id="textLessThan6" style="color: red" hidden >Password should have more than 6 characters</p>
                 <p id="textNumbers" style="color: red" hidden >Password should have numbers</p>
                 <p id="textLetters" style="color: red" hidden >Password should have letters</p>
-                <p><input placeholder="Password again" type="password" name="password2" required>  </p>
+                <p><input placeholder="Password again" type="password" name="password2" id="password2" oninput="checkEquals()" required>  </p>
+                <p id="textEquals" style="color: red" hidden >Passwords are not equal</p>
+                <p id="textEqualsCorrect" style="color: #28a745" hidden >Correct</p>
                 <t:isEquals isEquals="${pageContext.request.getAttribute(\"isEquals\")}"/>
                 <p> <input type="submit" class="btn btn-outline-success" value="Sign up"  name="signUp">  </p>
                  <a href="/login" class="badge badge-success">I have already had an account</a>
