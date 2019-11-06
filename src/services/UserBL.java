@@ -40,7 +40,7 @@ public class UserBL {
             //Создание кук
             if (request.getParameter("save") != null) {
                 Cookie loginCookie = new Cookie("login", "true");
-                loginCookie.setMaxAge(2592000);
+                loginCookie.setMaxAge(7200);
                 response.addCookie(loginCookie);
             }
             //при нажатии на кнопку авторизоваться отправляет на страницу профиля
@@ -69,17 +69,22 @@ public class UserBL {
                         response.sendRedirect("/login");
                     }
                 } else {
-                    ArrayList<Boolean> isExist = new ArrayList<>();
-                    isExist.add(true);
-                    request.setAttribute("isExist", isExist);
                     response.sendRedirect("/registration");
                 }
             } else {
-                ArrayList<Boolean> isExist = new ArrayList<>();
-                isExist.add(false);
-                request.setAttribute("isExist", isExist);
                 response.sendRedirect("/registration");
             }
+        }
+    }
+
+    public void profile(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException{
+        //отправляем на страничку изменения данных
+        if (request.getAttribute("change") != null){
+            response.sendRedirect("/changeValues");
+        } else if (request.getAttribute("logout") != null){
+            request.getSession().setAttribute("login", null);
+            request.getSession().setAttribute("password", null);
+            response.sendRedirect("/login");
         }
     }
 

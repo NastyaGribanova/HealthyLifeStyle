@@ -52,7 +52,7 @@ public class UserDAO implements UserCrudDAO {
 
     }
 
-    //проверка на существование логина и пароля в бд
+    //проверка на существование логина в бд
     public boolean isExist(String login) {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();

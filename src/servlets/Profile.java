@@ -1,11 +1,16 @@
 package servlets;
 
+import services.UserBL;
+
+import javax.jms.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /*
     Страничка профиля
@@ -13,8 +18,14 @@ import java.io.IOException;
 @WebServlet("/profile")
 public class Profile extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    private UserBL businessLogic = new UserBL();
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        try {
+            businessLogic.profile(request, response);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
