@@ -25,6 +25,10 @@
     /*height: 200px;*/
 }
 
+.change-body {
+    background-image: url("./back2.png");
+}
+
 .login {
     margin-top: 100pt;
 }
@@ -55,3 +59,10 @@
     background-image: url("slider.png");
 }
 
+.table {
+    border: #28a745 1px solid;
+    color: #28a745;
+    background-color: white;
+    /*border-radius: 20px;*/
+
+}
