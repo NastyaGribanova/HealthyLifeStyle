@@ -1,14 +1,12 @@
 package servlets;
 
-import services.UserBL;
+import services.UserUI;
 
-import javax.jms.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -18,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 @WebServlet("/profile")
 public class Profile extends HttpServlet {
 
-    private UserBL businessLogic = new UserBL();
+    private UserUI businessLogic = new UserUI();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
@@ -29,6 +27,10 @@ public class Profile extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("jsp/profilePage.jsp").forward(request, response);
+        if (request.getSession().getAttribute("login") == null){
+            response.sendRedirect("/login");
+        } else {
+            request.getRequestDispatcher("jsp/profilePage.jsp").forward(request, response);
+        }
     }
 }

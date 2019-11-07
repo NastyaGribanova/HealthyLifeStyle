@@ -1,6 +1,6 @@
 package servlets;
 
-import services.UserBL;
+import services.UserUI;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 
 public class First extends javax.servlet.http.HttpServlet {
 
-    private UserBL businessLogic = new UserBL();
+    private UserUI businessLogic = new UserUI();
 
     public First() throws SQLException {
     }

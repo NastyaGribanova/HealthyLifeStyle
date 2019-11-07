@@ -14,14 +14,14 @@
 <nav class="nav" style="width: 100%; margin: 0; background: #28a745; color: white;">
     <a class="nav-link active" style="font-weight: bold; font-size: 30px"><%=request.getSession().getAttribute("login")%></a>
     <li class="nav-item">
-        <form method="post">
-        <input name="logout" class="btn btn-outline-success button" style="width: 100px; margin-left: 900px; margin-top: 10px" type="submit" value="Log out">
+        <form method="post" action="logout">
+            <input name="logout" class="btn btn-outline-success button" style="width: 100px; margin-left: 900px; margin-top: 10px" type="submit" value="Log out">
         </form>
     </li>
 </nav>
 
 <div>
-    <form method="post">
+    <form method="get" action="changeValues">
         <div class="card bg-light mb-3 card-profile" style="width: 200px;  margin-top: 80pt;">
             <div class="card-header text">General information</div>
             <div class="card-body text">
@@ -112,7 +112,7 @@
     </div>
 </div>
 
-<p> <input name="chat" class="btn btn-outline-success button" style="margin-top: 10px;" type="submit" value="Chat">  </p>
+<%--<p> <input name="chat" class="btn btn-outline-success button" style="margin-top: 10px;" type="submit" value="Chat">  </p>--%>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"></script>

@@ -1,13 +1,12 @@
 package servlets;
 
-import services.UserBL;
+import services.UserUI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
 
 /*
     Страничка логина
@@ -15,7 +14,7 @@ import java.sql.SQLException;
 @WebServlet("/login")
 public class Login extends HttpServlet {
 
-    private UserBL businessLogic = new UserBL();
+    private UserUI businessLogic = new UserUI();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         try {

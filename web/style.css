@@ -17,16 +17,27 @@
 }
 .login-body {
     background-image: url("./background.png");
+
 }
 
 .profile-body {
     background-image: url("./sport2.png");
-    /*width: 600px;*/
-    /*height: 200px;*/
+    background-size: 100%;
+    -webkit-background-size: 100%;
+    background-attachment: fixed;
+}
+
+.body {
+    background-size: 100%;
+    -webkit-background-size: 100%;
+    background-attachment: fixed;
 }
 
 .change-body {
     background-image: url("./back2.png");
+    background-size: 100%;
+    -webkit-background-size: 100%;
+    background-attachment: fixed;
 }
 
 .login {
