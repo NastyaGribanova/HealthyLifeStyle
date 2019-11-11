@@ -22,14 +22,11 @@
         <div class="card bg-light mb-3 card-profile" style="width: 200px;  margin-top: 80pt;">
             <div class="card-header text">General information</div>
             <div class="card-body text">
-                <p>Age = </p>
-
-                <p>Sex = </p>
-
-                <p>Weight = </p>
-
-                <p>Height = </p>
-
+                <p>Age: </p>
+                <p>Sex: </p>
+                <p>Weight: </p>
+                <p>Height: </p>
+                <p>BMI: </p>
                 <p> <input name="change" class="btn btn-outline-success" type="submit" value="Change values">  </p>
             </div>
         </div>
