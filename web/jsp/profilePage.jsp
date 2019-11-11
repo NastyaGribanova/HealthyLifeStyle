@@ -11,6 +11,21 @@
 <nav class="nav" style="width: 100%; margin: 0; background: #28a745; color: white;">
     <a class="nav-link active" style="font-weight: bold; font-size: 30px"><%=((User)(request.getSession().getAttribute("user"))).getLogin()%></a>
 
+    <%if (((User)(request.getSession().getAttribute("user"))).getPermissionId() == 2){%>
+        <a><li class="nav-item">
+            <form method="post">
+                <input name="addExercises" class="btn btn-outline-success button" style="width: 100px; margin-left: 1250px" type="submit" value="Add exercises">
+            </form>
+        </li>
+
+            <li class="nav-item">
+                <form method="post">
+                    <input name="addTrainer" class="btn btn-outline-success button" style="width: 100px; margin-left: 1250px" type="submit" value="Add trainer">
+                </form>
+            </li></a>
+    <%}%>
+
+
     <ul class="nav justify-content-end" style="margin-top: 10px; margin-left: 100px">
         <li class="nav-item">
             <a>
