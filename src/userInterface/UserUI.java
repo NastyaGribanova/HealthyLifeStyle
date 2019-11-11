@@ -1,4 +1,4 @@
-package services;
+package userInterface;
 
 import businessLogic.UserBL;
 
@@ -15,12 +15,13 @@ public class UserUI {
 
     //Проверка на существование кук
     public boolean checkCookie(Cookie[] cookies) {
-        for (Cookie cookie : cookies) {
-            if (cookie.getName().equals("login")) {
-                return true;
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("login")) {
+                    return true;
+                }
             }
-        }
-        return false;
+        }   return false;
     }
 
     //метод doPost на странице авторизации

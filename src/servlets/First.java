@@ -1,9 +1,8 @@
 package servlets;
 
-import services.UserUI;
+import userInterface.UserUI;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 
 /*
@@ -13,9 +12,6 @@ import java.sql.SQLException;
 public class First extends javax.servlet.http.HttpServlet {
 
     private UserUI businessLogic = new UserUI();
-
-    public First() throws SQLException {
-    }
 
     protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws IOException {
         //при нажатии на кнопку отправляй на страницу авторизации

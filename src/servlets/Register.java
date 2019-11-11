@@ -1,6 +1,6 @@
 package servlets;
 
-import services.UserUI;
+import userInterface.UserUI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

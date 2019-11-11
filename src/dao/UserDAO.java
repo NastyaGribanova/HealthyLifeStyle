@@ -12,7 +12,7 @@ public class UserDAO implements UserCrudDAO {
     private Connection connection;
 
     @Override
-    public boolean create(User user) {
+    public User create(User user) {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
@@ -27,8 +27,8 @@ public class UserDAO implements UserCrudDAO {
                     System.out.println("Exception during method saveLogin");
                     throw new IllegalArgumentException();
                 }
-                return true;
-            } else return false;
+                return user;
+            } else return null;
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         } finally {

@@ -1,6 +1,6 @@
 package servlets;
 
-import services.StatsUI;
+import userInterface.StatsUI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
