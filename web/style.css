@@ -61,6 +61,13 @@
     background-attachment: fixed;
 }
 
+.trainer-body {
+    background-image: url("./trainer.png");
+    background-size: 100%;
+    -webkit-background-size: 100%;
+    background-attachment: fixed;
+}
+
 .login {
     margin-top: 100pt;
 }
