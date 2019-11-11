@@ -39,9 +39,8 @@
             <div class="card-header text" id="date"></div>
             <div class="card-body text">
                 Sleep time = <input name="sleepTime" type="text">
-                <input name="saveSleepTime" id="saveSleepTime" class="btn btn-outline-success" type="submit" value="Save">
-                <p>  Pressure  =  <input name="pressure" type="text">
-                    <input name="savePressure" id="savePressure" class="btn btn-outline-success" type="submit" value="Save"></p>
+                <p>  Pressure  =  <input name="pressure" type="text"> </p>
+                <p>  <input name="save" style="margin-left: 180px;" id="savePressure" class="btn btn-outline-success" type="submit" value="Save"></p>
             </div>
         </div>
     </form>
