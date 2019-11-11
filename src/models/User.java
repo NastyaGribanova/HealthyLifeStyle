@@ -6,6 +6,7 @@ public class User {
     private String login;
     private String password;
     private UserStats userStats;
+    private int permissionId;
 
     public User(String login, String password) {
         this.login = login;
@@ -44,4 +45,11 @@ public class User {
         this.password = password;
     }
 
+    public int getPermissionId() {
+        return permissionId;
+    }
+
+    public void setPermissionId(int permissionId) {
+        this.permissionId = permissionId;
+    }
 }

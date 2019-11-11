@@ -25,7 +25,7 @@ public class Login extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("login") != null) {
+        if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
         } else {
             request.getRequestDispatcher("jsp/loginPage.jsp").forward(request, response);

@@ -5,6 +5,7 @@ import util.DataBase;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserDAO implements UserCrudDAO {
@@ -12,14 +13,15 @@ public class UserDAO implements UserCrudDAO {
     private Connection connection;
 
     @Override
-    public User create(User user) {
+    public User create(User user, int role) {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.prepareStatement("INSERT INTO user (login, password)" +
-                    "VALUES (?,?)");
+            statement = connection.prepareStatement("INSERT INTO user (login, password, permission_id)" +
+                    "VALUES (?,?,?)");
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
+            statement.setInt(3, role);
             if (!isExist(user.getLogin())) {
                 try {
                     statement.executeUpdate();
@@ -27,7 +29,7 @@ public class UserDAO implements UserCrudDAO {
                     System.out.println("Exception during method saveLogin");
                     throw new IllegalArgumentException();
                 }
-                return user;
+                return read(user.getLogin());
             } else return null;
         } catch (SQLException e) {
             throw new IllegalStateException(e);
@@ -37,11 +39,25 @@ public class UserDAO implements UserCrudDAO {
     }
 
     @Override
-    public void read() {
-
+    public User read(String login) {
+        PreparedStatement statement;
+        connection = DataBase.getInstance().getConnection();
+        try {
+            statement = connection.prepareStatement("SELECT * FROM user WHERE login = ?");
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                User user = new User(resultSet.getString("login"), resultSet.getString("password"));
+                user.setPermissionId(resultSet.getInt("permission_id"));
+                user.setId(resultSet.getInt("id"));
+                return user;
+            } else return null;
+        } catch (SQLException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    @Override
+        @Override
     public void update() {
 
     }
@@ -67,17 +83,20 @@ public class UserDAO implements UserCrudDAO {
         }
     }
 
-    public boolean isExist(String login, String password) {
+    public User isExist(String login, String password) {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
             statement = connection.prepareStatement("SELECT * FROM user WHERE login = ? AND password = ?");
             statement.setString(1, login);
             statement.setString(2, password);
-            if (statement.executeQuery().next()) {
-                return true;
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                User user = new User(resultSet.getString("login"), resultSet.getString("password"));
+                user.setId(resultSet.getInt("id"));
+                return user;
             } else {
-                return false;
+                return null;
             }
         } catch (SQLException e) {
             e.printStackTrace();

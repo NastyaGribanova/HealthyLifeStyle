@@ -31,10 +31,9 @@ public class UserUI {
         String password = request.getParameter("password");
         HttpSession session = request.getSession();
         //проверка логина и пароля на совместимость с бд
-        boolean successful = userBl.login(login, password);
-        if (successful) {
-            session.setAttribute("login", login);
-            session.setAttribute("password", userBl.getHash(password));
+        User user = userBl.login(login, password);
+        if (user != null) {
+            session.setAttribute("user", user);
             //Создание кук
             if (request.getParameter("save") != null) {
                 Cookie loginCookie = new Cookie("login", login);
@@ -54,7 +53,7 @@ public class UserUI {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String repeatPassword = request.getParameter("password2");
-        boolean successful = userBl.register(login, password, repeatPassword);
+        boolean successful = userBl.register(login, password, repeatPassword, 1);
         if (successful){
             response.sendRedirect("/login");
         }else response.sendRedirect("/registration");

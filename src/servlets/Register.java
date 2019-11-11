@@ -27,7 +27,7 @@ public class Register extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("login") != null) {
+        if (request.getSession().getAttribute("user") != null) {
             response.sendRedirect("/profile");
         } else {
             request.getRequestDispatcher("jsp/registrationPage.jsp").forward(request, response);

@@ -27,7 +27,7 @@ public class Profile extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getSession().getAttribute("login") == null){
+        if (request.getSession().getAttribute("user") == null){
             response.sendRedirect("/login");
         } else {
             request.getRequestDispatcher("jsp/profilePage.jsp").forward(request, response);

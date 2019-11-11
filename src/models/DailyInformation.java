@@ -2,31 +2,31 @@ package models;
 
 public class DailyInformation {
 
-    int user_id;
-    int sleep_id;
-    int pressure_id;
+    Integer userID;
+    Integer sleep;
+    Integer pressure;
 
-    public int getUser_id() {
-        return user_id;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
-    public int getSleep_id() {
-        return sleep_id;
+    public Integer getSleep() {
+        return sleep;
     }
 
-    public void setSleep_id(int sleep_id) {
-        this.sleep_id = sleep_id;
+    public void setSleep(Integer sleep) {
+        this.sleep = sleep;
     }
 
-    public int getPressure_id() {
-        return pressure_id;
+    public Integer getPressure() {
+        return pressure;
     }
 
-    public void setPressure_id(int pressure_id) {
-        this.pressure_id = pressure_id;
+    public void setPressure(Integer pressure) {
+        this.pressure = pressure;
     }
 }

@@ -1,5 +1,7 @@
 package servlets;
 
+import userInterface.DailyInformationUI;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,8 +12,10 @@ import java.io.IOException;
 @WebServlet("/dailyInformation")
 public class DailyInformation extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private DailyInformationUI businessLogic = new DailyInformationUI();
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        businessLogic.dailyInformation(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,3 +1,4 @@
+<%@ page import="models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/jsp/hrefs.jsp"%>
 <html>
@@ -8,12 +9,12 @@
 <body class="main-text profile-body" onload="getDate()">
 
 <nav class="nav" style="width: 100%; margin: 0; background: #28a745; color: white;">
-    <a class="nav-link active" style="font-weight: bold; font-size: 30px"><%=request.getSession().getAttribute("login")%></a>
+    <a class="nav-link active" style="font-weight: bold; font-size: 30px"><%=((User)(request.getSession().getAttribute("user"))).getLogin()%></a>
 
     <ul class="nav justify-content-end" style="margin-top: 10px; margin-left: 100px">
         <li class="nav-item">
             <a>
-                <form method="post">
+                <form method="post" action="comments">
                     <input name="comments" class="btn btn-outline-success button"  type="submit" value="Comments">
                 </form></a>
         </li>
