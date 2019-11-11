@@ -3,6 +3,7 @@
 <%@include file="/jsp/hrefs.jsp"%>
 <head>
     <title>Change</title>
+    <script type="application/javascript" src="js/forChange.js"></script>
 </head>
 <body class="change-body">
 
