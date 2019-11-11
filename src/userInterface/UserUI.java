@@ -1,6 +1,7 @@
 package userInterface;
 
 import businessLogic.UserBL;
+import models.User;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;

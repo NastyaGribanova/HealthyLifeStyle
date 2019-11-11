@@ -38,7 +38,7 @@
 </div>
 
 <div >
-    <form method="post">
+    <form method="post" action="dailyInformation">
         <div class="card bg-light mb-3 card-profile" style="width: 500px;   position: absolute; top: 125pt; left: 50%">
             <div class="card-header text" id="date"></div>
             <div class="card-body text">

@@ -1,12 +1,12 @@
 package models;
 
 public class UserStats {
-    //СДЕЛАЙ ЕНАМ СЕКС
+
     Integer userID;
     Integer age;
-
     Integer weight;
     Integer height;
+    private Sex sex;
 
     public Integer getUserID() {
         return userID;
@@ -38,5 +38,13 @@ public class UserStats {
 
     public void setHeight(Integer height) {
         this.height = height;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 }

@@ -1,6 +1,8 @@
 package userInterface;
 
 import businessLogic.StatsBL;
+import ii.BMI;
+import models.Sex;
 import models.UserStats;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class StatsUI {
 
     private StatsBL businessLogic = new StatsBL();
+    private BMI imt = new BMI();
 
     //метод Post для UserStats
     public void changeValues(HttpServletRequest request, HttpServletResponse response){
@@ -19,9 +22,12 @@ public class StatsUI {
 
         UserStats userStats = new UserStats();
         userStats.setAge(Integer.parseInt(age));
-        userStats.setSex(Integer.parseInt(sex));
+        userStats.setSex(Sex.valueOf(sex));
         userStats.setWeight(Integer.parseInt(weight));
         userStats.setHeight(Integer.parseInt(height));
+
+        float bmi = imt.bmi(userStats.getWeight(), userStats.getHeight());
+
         businessLogic.updateStats(userStats);
     }
 }

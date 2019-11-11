@@ -20,7 +20,7 @@ public class StatsDAO {
             statement = connection.prepareStatement("INSERT INTO user_stat (age, sex, weight, height)" +
                     "VALUES (?, ?, ?, ?)");
             statement.setInt(1, userStats.getAge());
-            statement.setInt(2, userStats);
+            statement.setString(2, userStats.getSex().name());
             statement.setInt(3, userStats.getWeight());
             statement.setInt(4, userStats.getHeight());
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public class StatsDAO {
             statement = connection.prepareStatement("UPDATE user_stat SET age = ?, sex = ?, weight = ?, height = ?  " +
                     "WHERE user_id = ?");
             statement.setInt(1, userStats.getAge());
-            statement.setInt(2, value);
+            statement.setString(2, userStats.getSex().name());
             statement.setInt(3, userStats.getWeight());
             statement.setInt(4, userStats.getHeight());
             statement.setInt(5, userStats.getUserID());
