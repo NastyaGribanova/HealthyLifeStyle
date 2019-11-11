@@ -4,7 +4,6 @@
 <head>
     <title>Profile</title>
     <script type="application/javascript" src="js/forProfile.js"></script>
-    <style type="text/css"></style>
 </head>
 <body class="main-text profile-body" onload="getDate()">
 
@@ -17,7 +16,7 @@
     </li>
     <li class="nav-item">
         <form method="post" action="logout">
-            <input name="logout" class="btn btn-outline-success button" style="width: 100px; margin-left: 1050px; margin-top: 10px" type="submit" value="Log out">
+            <input name="logout" class="btn btn-outline-success button" style="width: 100px; margin-left: 1050px" type="submit" value="Log out">
         </form>
     </li>
 </nav>

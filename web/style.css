@@ -40,6 +40,20 @@
     background-attachment: fixed;
 }
 
+.profile-show-body {
+    background-image: url("./sliderBack.png");
+    background-size: 100%;
+    -webkit-background-size: 100%;
+    background-attachment: fixed;
+}
+
+.profile-change-body {
+    background-image: url("./back.png");
+    background-size: 100%;
+    -webkit-background-size: 100%;
+    background-attachment: fixed;
+}
+
 .login {
     margin-top: 100pt;
 }
