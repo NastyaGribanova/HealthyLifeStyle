@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/jsp/hrefs.jsp"%>
 <html>
@@ -15,10 +16,10 @@
 
 
     <c:set var="i" value="${1}"/>
-    <c:forEach var="order" items="${sessionScope.orderDeliveryList}">
+    <c:forEach var="order" items="${project1.user}">
         <form action="/profile/basket" method="post">
             <div class="comment" style="margin-left: 10px">
-                <h5>бахни логин из бд</h5>
+                <h5>${order.login}</h5>
                 <p>бахни текст коммента из бд</p>
                 <p>бахни дату из бд</p>
             </div>
