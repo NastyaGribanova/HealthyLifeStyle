@@ -67,6 +67,18 @@ public class UserUI {
 
     }
 
+    //метод регистрации нового тренера
+    public void addTrainer(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String repeatPassword = request.getParameter("password2");
+        String email = request.getParameter("email");
+        boolean successful = userBl.register(login, password, repeatPassword, email, 2);
+        if (successful){
+            response.sendRedirect("/profile");
+        }else response.sendRedirect("/addTrainer");
+    }
+
     //метод doPost для страницы регистрации
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
         String login = request.getParameter("login");

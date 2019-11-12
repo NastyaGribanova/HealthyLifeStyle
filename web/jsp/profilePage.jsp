@@ -15,13 +15,13 @@
         <a class="nav-link active" style="font-weight: bold; font-size: 30px">${user.login}</a>
         <c:if test="${sessionScope.user.permissionId==2}">
             <a><li class="nav-item">
-                <form method="post">
+                <form method="post" action="exercise">
                     <input name="addExercises" class="btn btn-outline-success button" type="submit" value="Add exercises">
                 </form>
             </li>
 
                 <li class="nav-item">
-                    <form method="post">
+                    <form method="post" action="trainer">
                         <input name="addTrainer" class="btn btn-outline-success button"  type="submit" value="Add trainer">
                     </form>
                 </li></a>
