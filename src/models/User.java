@@ -5,12 +5,23 @@ public class User {
     private int id;
     private String login;
     private String password;
-    private UserStats userStats;
     private int permissionId;
+    private String email;
+    private UserStats userStats;
+    private DailyInformation dailyInformation;
+
+    public User(String login, String password, String email) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+    }
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
+    }
+
+    public User() {
     }
 
     public int getId() {
@@ -51,5 +62,21 @@ public class User {
 
     public void setPermissionId(int permissionId) {
         this.permissionId = permissionId;
+    }
+
+    public DailyInformation getDailyInformation() {
+        return dailyInformation;
+    }
+
+    public void setDailyInformation(DailyInformation dailyInformation) {
+        this.dailyInformation = dailyInformation;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

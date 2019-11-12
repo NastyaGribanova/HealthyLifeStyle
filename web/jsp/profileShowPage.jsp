@@ -8,11 +8,11 @@
 <body class="profile-show-body">
 
 <div class="login text" align="center">
-    <form method="post" >
+    <form method="post" action = profileShow>
         <div class="card bg-light mb-3"  style="width: 350px;" >
             <div class="card-body">
-                <p>Login: </p>
-                <p>E-mail: </p>
+                <p>Login: ${user.login}</p>
+                <p>E-mail: ${user.email}</p>
                 <p> <input type="submit" class="btn btn-outline-success" value="Change data"
                            name="changeData">  </p>
             </div>

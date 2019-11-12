@@ -7,6 +7,7 @@ public class UserStats {
     Integer weight;
     Integer height;
     private Sex sex;
+    Float bmi;
 
     public Integer getUserID() {
         return userID;
@@ -46,5 +47,13 @@ public class UserStats {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public Float getBmi() {
+        return bmi;
+    }
+
+    public void setBmi(Float bmi) {
+        this.bmi = bmi;
     }
 }

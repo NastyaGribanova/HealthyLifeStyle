@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/logout")
+@WebServlet(urlPatterns = "/logout")
 public class Logout extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-            request.getSession().setAttribute("login", null);
-            request.getSession().setAttribute("password", null);
+            request.getSession().setAttribute("user", null);
             Cookie loginCookie = new Cookie("login", "false");
             loginCookie.setMaxAge(0);
             response.addCookie(loginCookie);

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="models.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/jsp/hrefs.jsp"%>
@@ -9,24 +10,22 @@
 <body class="main-text profile-body" onload="getDate()">
 
 <nav class="nav" style="width: 100%; margin: 0; background: #28a745; color: white;">
-    <a class="nav-link active" style="font-weight: bold; font-size: 30px"><%=((User)(request.getSession().getAttribute("user"))).getLogin()%></a>
-
-    <%if (((User)(request.getSession().getAttribute("user"))).getPermissionId() == 2){%>
-        <a><li class="nav-item">
-            <form method="post">
-                <input name="addExercises" class="btn btn-outline-success button" style="width: 100px; margin-left: 1250px" type="submit" value="Add exercises">
-            </form>
-        </li>
-
-            <li class="nav-item">
-                <form method="post">
-                    <input name="addTrainer" class="btn btn-outline-success button" style="width: 100px; margin-left: 1250px" type="submit" value="Add trainer">
-                </form>
-            </li></a>
-    <%}%>
-
 
     <ul class="nav justify-content-end" style="margin-top: 10px; margin-left: 100px">
+        <a class="nav-link active" style="font-weight: bold; font-size: 30px">${user.login}</a>
+        <c:if test="${sessionScope.user.permissionId==2}">
+            <a><li class="nav-item">
+                <form method="post">
+                    <input name="addExercises" class="btn btn-outline-success button" type="submit" value="Add exercises">
+                </form>
+            </li>
+
+                <li class="nav-item">
+                    <form method="post">
+                        <input name="addTrainer" class="btn btn-outline-success button"  type="submit" value="Add trainer">
+                    </form>
+                </li></a>
+        </c:if>
         <li class="nav-item">
             <a>
                 <form method="post" action="comments">
@@ -35,7 +34,7 @@
         </li>
         <li class="nav-item">
             <a>
-                <form method="post">
+                <form method="post" action="show">
                     <input name="profile" class="btn btn-outline-success button" type="submit" value="Profile">
                 </form></a>
         </li>

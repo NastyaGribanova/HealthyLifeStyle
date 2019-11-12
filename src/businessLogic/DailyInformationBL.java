@@ -17,10 +17,16 @@ public class DailyInformationBL {
                 newDailyInformation.setSleep(dailyInformation.getSleep());
             }
 
-            if (dailyInformation.getPressure() == null){
-                newDailyInformation.setPressure(foundUserInformation.getPressure());
+            if (dailyInformation.getPressureSYS() == null){
+                newDailyInformation.setPressureSYS(foundUserInformation.getPressureSYS());
             } else {
-                newDailyInformation.setPressure(dailyInformation.getPressure());
+                newDailyInformation.setPressureSYS(dailyInformation.getPressureSYS());
+            }
+
+            if (dailyInformation.getPressureDIA() == null){
+                newDailyInformation.setPressureDIA(foundUserInformation.getPressureDIA());
+            } else {
+                newDailyInformation.setPressureDIA(dailyInformation.getPressureDIA());
             }
             newDailyInformation.setUserID(dailyInformation.getUserID());
             dao.update(newDailyInformation);

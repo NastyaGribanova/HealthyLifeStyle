@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 public class UserUI {
@@ -48,12 +49,31 @@ public class UserUI {
         }
     }
 
+    //метод doPost для страницы изменения логина и пароля
+    public void update(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        String repeatPassword = request.getParameter("password2");
+        String email = request.getParameter("email");
+
+        User user = new User();
+        user.setLogin(login.equals("") ? null : login);
+        user.setPassword(password.equals("") ? null : password);
+        user.setEmail(email.equals("") ? null : email);
+
+        userBl.update(user, repeatPassword);
+
+        response.sendRedirect("/profile");
+
+    }
+
     //метод doPost для страницы регистрации
     public void register(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         String repeatPassword = request.getParameter("password2");
-        boolean successful = userBl.register(login, password, repeatPassword, 1);
+        String email = request.getParameter("email");
+        boolean successful = userBl.register(login, password, repeatPassword, email, 1);
         if (successful){
             response.sendRedirect("/login");
         }else response.sendRedirect("/registration");

@@ -16,14 +16,12 @@ public class DailyInformationDAO {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.prepareStatement("INSERT INTO daily_information (user_id)" +
+            statement = connection.prepareStatement("INSERT INTO daily_information (user_id) " +
                     "VALUES (?)");
             statement.setInt(1, dailyInformation.getUserID());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalStateException(e);
-        } finally {
-            //DataBase.getInstance().closeConnection();
         }
     }
 
@@ -31,16 +29,15 @@ public class DailyInformationDAO {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.prepareStatement("UPDATE daily_information SET sleep_id = ?, pressure_id = ? " +
+            statement = connection.prepareStatement("UPDATE daily_information SET sleep = ?, pressure_sys = ?, pressure_dia = ? " +
                     "WHERE user_id = ?");
             statement.setInt(1, dailyInformation.getSleep());
-            statement.setInt(2, dailyInformation.getPressure());
-            statement.setInt(3, dailyInformation.getUserID());
+            statement.setInt(2, dailyInformation.getPressureSYS());
+            statement.setInt(3, dailyInformation.getPressureDIA());
+            statement.setInt(4, dailyInformation.getUserID());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalStateException(e);
-        } finally {
-            //DataBase.getInstance().closeConnection();
         }
     }
 
@@ -54,7 +51,8 @@ public class DailyInformationDAO {
             if (resultSet.next()) {
                 DailyInformation dailyInformation = new DailyInformation();
                 dailyInformation.setSleep(resultSet.getInt("sleep"));
-                dailyInformation.setPressure(resultSet.getInt("pressure"));
+                dailyInformation.setPressureSYS(resultSet.getInt("pressure_sys"));
+                dailyInformation.setPressureDIA(resultSet.getInt("pressure_dia"));
                 return dailyInformation;
             } else return null;
 

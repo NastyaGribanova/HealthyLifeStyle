@@ -24,8 +24,6 @@ public class StatsDAO {
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalStateException(e);
-        } finally {
-            //DataBase.getInstance().closeConnection();
         }
     }
 
@@ -33,18 +31,17 @@ public class StatsDAO {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.prepareStatement("UPDATE user_stat SET age = ?, sex = ?, weight = ?, height = ?  " +
+            statement = connection.prepareStatement("UPDATE user_stat SET age = ?, sex = ?, weight = ?, height = ?, bmi = ? " +
                     "WHERE user_id = ?");
             statement.setInt(1, userStats.getAge());
             statement.setString(2, userStats.getSex().name());
             statement.setInt(3, userStats.getWeight());
             statement.setInt(4, userStats.getHeight());
-            statement.setInt(5, userStats.getUserID());
+            statement.setFloat(5, userStats.getBmi());
+            statement.setInt(6, userStats.getUserID());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalStateException(e);
-        } finally {
-            //DataBase.getInstance().closeConnection();
         }
     }
 
@@ -61,6 +58,7 @@ public class StatsDAO {
                 userStats.setWeight(resultSet.getInt("weight"));
                 userStats.setHeight(resultSet.getInt("height"));
                 userStats.setSex(resultSet.getString("sex").equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE );
+                userStats.setBmi(resultSet.getFloat("bmi"));
                 return userStats;
             } else return null;
 

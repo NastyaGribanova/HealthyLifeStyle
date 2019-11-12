@@ -24,16 +24,46 @@ public class UserBL {
         } else return false;
     }
 
-    public boolean register(String login, String password, String repeatPassword, int role) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public void update(User user, String repeatPassword) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+
+        User foundUser = userDAO.read(user.getLogin());
+        User newUser = new User();
+
+        if (foundUser != null){
+            if (user.getLogin() == null){
+                newUser.setLogin(foundUser.getLogin());
+            } else {
+                newUser.setLogin(user.getLogin());
+            }
+
+            if (user.getEmail() == null){
+                newUser.setEmail(foundUser.getEmail());
+            } else {
+                newUser.setEmail(user.getEmail());
+            }
+
+            if (user.getPassword() == null){
+                newUser.setPassword(foundUser.getPassword());
+            } else {
+                if (checkPassword(user.getPassword(), repeatPassword)) {
+                    newUser.setPassword(user.getPassword());
+                }
+            }
+
+            userDAO.update(newUser);
+        }
+    }
+
+    public boolean register(String login, String password, String repeatPassword, String email, int role) throws UnsupportedEncodingException, NoSuchAlgorithmException {
         if (checkPassword(password, repeatPassword)){
             if (!userDAO.isExist(login)) {
-                User user = new User(login, getHash(password));
+                User user = new User(login, getHash(password), email);
                 User createdUser = userDAO.create(user, role);
                 if (createdUser != null) {
                     UserStats userStats = new UserStats();
                     userStats.setUserID(createdUser.getId());
                     DailyInformation dailyInformation = new DailyInformation();
-                    dailyInformation.setUserID(user.getId());
+                    dailyInformation.setUserID(userStats.getUserID());
                     statsDAO.create(userStats);
                     dailyInformationDAO.create(dailyInformation);
                     //при нажатии на кнопку регистрации отправляет на страницу авторизации

@@ -6,20 +6,28 @@ import models.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class DailyInformationUI {
 
     private DailyInformationBL businessLogic = new DailyInformationBL();
 
     public void dailyInformation(HttpServletRequest request, HttpServletResponse response){
-        String sleep = request.getParameter("sleep");
-        String pressure = request.getParameter("pressure");
+        String sleep = request.getParameter("sleepTime");
+        String pressureSYS = request.getParameter("pressureSYS");
+        String pressureDIA = request.getParameter("pressureDIA");
 
         DailyInformation dailyInformation = new DailyInformation();
         dailyInformation.setSleep(sleep.equals("") ? null: Integer.parseInt(sleep));
-        dailyInformation.setPressure(pressure.equals("") ? null: Integer.parseInt(pressure));
+        dailyInformation.setPressureSYS(pressureSYS.equals("") ? null: Integer.parseInt(pressureSYS));
+        dailyInformation.setPressureDIA(pressureDIA.equals("") ? null: Integer.parseInt(pressureDIA));
         dailyInformation.setUserID(((User)request.getSession().getAttribute("user")).getId());
 
         businessLogic.updateInformation(dailyInformation);
+        try {
+            response.sendRedirect("/profile");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -4,7 +4,8 @@ public class DailyInformation {
 
     Integer userID;
     Integer sleep;
-    Integer pressure;
+    Integer pressureSYS;
+    Integer pressureDIA;
 
     public Integer getUserID() {
         return userID;
@@ -22,11 +23,19 @@ public class DailyInformation {
         this.sleep = sleep;
     }
 
-    public Integer getPressure() {
-        return pressure;
+    public Integer getPressureSYS() {
+        return pressureSYS;
     }
 
-    public void setPressure(Integer pressure) {
-        this.pressure = pressure;
+    public void setPressureSYS(Integer pressureSYS) {
+        this.pressureSYS = pressureSYS;
+    }
+
+    public Integer getPressureDIA() {
+        return pressureDIA;
+    }
+
+    public void setPressureDIA(Integer pressureDIA) {
+        this.pressureDIA = pressureDIA;
     }
 }

@@ -7,7 +7,7 @@ import models.UserStats;
 public class StatsBL {
 
     StatsDAO dao = new StatsDAO();
-    //private BMI imt = new BMI();
+    private BMI imt = new BMI();
 
     public void updateStats(UserStats userStats){
         UserStats foundUserStats = dao.findByID(userStats.getUserID());
@@ -36,9 +36,15 @@ public class StatsBL {
             } else {
                 newUserStats.setSex(userStats.getSex());
             }
+
+            if ((newUserStats.getWeight() != null)&&(newUserStats.getHeight() != null)) {
+                float bmi = imt.bmi(newUserStats.getWeight(), newUserStats.getHeight());
+                newUserStats.setBmi(bmi);
+            }
+
             newUserStats.setUserID(userStats.getUserID());
             dao.update(newUserStats);
-            //float bmi = imt.bmi(userStats.getWeight(), userStats.getHeight());
+
         }
     }
 }

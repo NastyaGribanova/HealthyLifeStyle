@@ -14,52 +14,63 @@ public class UserDAO implements UserCrudDAO {
 
     @Override
     public User create(User user, int role) {
-        PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
-        try {
-            statement = connection.prepareStatement("INSERT INTO user (login, password, permission_id)" +
-                    "VALUES (?,?,?)");
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
-            statement.setInt(3, role);
+        String sqlQuery = "INSERT INTO user (login, password, email, permission_id)" +
+                "VALUES (?,?,?,?)";
+        try (PreparedStatement ps = connection.prepareStatement(sqlQuery)){
+            ps.setString(1, user.getLogin());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getEmail());
+            ps.setInt(4, role);
             if (!isExist(user.getLogin())) {
-                try {
-                    statement.executeUpdate();
-                } catch (SQLException e) {
-                    System.out.println("Exception during method saveLogin");
-                    throw new IllegalArgumentException();
-                }
+                ps.executeUpdate();
                 return read(user.getLogin());
             } else return null;
         } catch (SQLException e) {
             throw new IllegalStateException(e);
-        } finally {
-            //DataBase.getInstance().closeConnection();
         }
     }
 
     @Override
     public User read(String login) {
-        PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
-        try {
-            statement = connection.prepareStatement("SELECT * FROM user WHERE login = ?");
-            statement.setString(1, login);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                User user = new User(resultSet.getString("login"), resultSet.getString("password"));
-                user.setPermissionId(resultSet.getInt("permission_id"));
-                user.setId(resultSet.getInt("id"));
-                return user;
-            } else return null;
-        } catch (SQLException e) {
-            throw new IllegalArgumentException();
+        String sqlQuery = "SELECT * FROM user WHERE login = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sqlQuery)) {
+            ps.setString(1, login);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    User user = new User(resultSet.getString("login"),
+                                         resultSet.getString("password"),
+                                         resultSet.getString("email"));
+                    user.setPermissionId(resultSet.getInt("permission_id"));
+                    user.setId(resultSet.getInt("id"));
+                    return user;
+                } else return null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new IllegalArgumentException(e);
+            }
+        } catch (SQLException e){
+            throw new IllegalArgumentException(e);
         }
     }
 
-        @Override
-    public void update() {
-
+    @Override
+    public User update(User user) {
+        connection = DataBase.getInstance().getConnection();
+        String sqlQuery = "UPDATE user SET login = ?, password = ?, email = ?, permission_id = ?" +
+                                            "WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sqlQuery)){
+            ps.setString(1, user.getLogin());
+            ps.setString(2, user.getPassword());
+            ps.setString(3, user.getEmail());
+            ps.setInt(4, user.getPermissionId());
+            ps.setInt(5, user.getId());
+            ps.executeUpdate();
+            return read(user.getLogin());
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
+        }
     }
 
     @Override
@@ -69,12 +80,11 @@ public class UserDAO implements UserCrudDAO {
 
     //проверка на существование логина в бд
     public boolean isExist(String login) {
-        PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
-        try {
-            statement = connection.prepareStatement("SELECT * FROM user WHERE login = ?");
-            statement.setString(1, login);
-            if (statement.executeQuery().next()) {
+        String sqlQuery = "SELECT * FROM user WHERE login = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sqlQuery)){
+            ps.setString(1, login);
+            if (ps.executeQuery().next()) {
                 return true;
             } else return false;
         } catch (SQLException e) {
@@ -84,19 +94,22 @@ public class UserDAO implements UserCrudDAO {
     }
 
     public User isExist(String login, String password) {
-        PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
-        try {
-            statement = connection.prepareStatement("SELECT * FROM user WHERE login = ? AND password = ?");
-            statement.setString(1, login);
-            statement.setString(2, password);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                User user = new User(resultSet.getString("login"), resultSet.getString("password"));
-                user.setId(resultSet.getInt("id"));
-                return user;
-            } else {
-                return null;
+        String sqlQuery = "SELECT * FROM user WHERE login = ? AND password = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sqlQuery)) {
+            ps.setString(1, login);
+            ps.setString(2, password);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    User user = new User(resultSet.getString("login"),
+                                         resultSet.getString("password"));
+                    user.setId(resultSet.getInt("id"));
+                    user.setPermissionId(resultSet.getInt("permission_id"));
+                    user.setEmail(resultSet.getString("email"));
+                    return user;
+                } else {
+                    return null;
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
