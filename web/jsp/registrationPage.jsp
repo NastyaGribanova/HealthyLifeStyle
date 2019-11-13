@@ -6,6 +6,7 @@
 <head>
       <title>Registration</title>
     <script type="application/javascript" src="js/forPassword.js"></script>
+    <script type="application/javascript" src="js/forEmail.js"></script>
 </head>
 <body class="login-body">
 
@@ -14,7 +15,8 @@
         <div class="card bg-light mb-3"  style="width: 350px;" >
             <div class="card-body">
                 <p> <input placeholder="Login" type="text" name="login" class="text-form" required>  </p>
-                <p> <input placeholder="E-mail" type="text" name="email" required>  </p>
+                <p> <input placeholder="E-mail" type="text" oninput="checkEmail()" id="email" name="email" required>  </p>
+                <p id="textWrongEmail" style="color: red" hidden >Incorrect e-mail</p>
                 <p><input placeholder="Password" type="password" name="password" id="password" oninput="checkPassword()" required>  </p>
                 <p id="textLessThan6" style="color: red" hidden >Password should have more than 6 characters</p>
                 <p id="textNumbers" style="color: red" hidden >Password should have numbers</p>
