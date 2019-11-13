@@ -8,7 +8,7 @@
 <body class="profile-change-body">
 
 <div class="login text" align="center">
-    <form method="post" action="profileChange" >
+    <form method="post" action="/profileChange" >
         <div class="card bg-light mb-3"  style="width: 350px;" >
             <div class="card-body">
                 <p> <input placeholder="Login" type="text" name="login" class="text-form">  </p>

@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="models.User" %>
+<%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/jsp/hrefs.jsp"%>
 <html>
@@ -53,11 +53,12 @@
         <div class="card bg-light mb-3 card-profile" style="width: 200px;  margin-top: 80pt;">
             <div class="card-header text">General information</div>
             <div class="card-body text">
-                <p>Age: </p>
-                <p>Sex: </p>
-                <p>Weight: </p>
-                <p>Height: </p>
-                <p>BMI: </p>
+                <p>Age: ${userStats.get(0)} </p>
+                <p>Sex: ${userStats.get(1)} </p>
+                <p>Weight: ${userStats.get(2)} </p>
+                <p>Height: ${userStats.get(3)} </p>
+                <p>BMI: ${userStats.get(4)} </p>
+                <tag:bmi/>
                 <p> <input name="change" class="btn btn-outline-success" type="submit" value="Change values">  </p>
             </div>
         </div>

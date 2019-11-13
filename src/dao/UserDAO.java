@@ -55,19 +55,41 @@ public class UserDAO implements UserCrudDAO {
         }
     }
 
+    public User read(int id) {
+        connection = DataBase.getInstance().getConnection();
+        String sqlQuery = "SELECT * FROM user WHERE id = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sqlQuery)) {
+            ps.setInt(1, id);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    User user = new User(resultSet.getString("login"),
+                            resultSet.getString("password"),
+                            resultSet.getString("email"));
+                    user.setPermissionId(resultSet.getInt("permission_id"));
+                    user.setId(resultSet.getInt("id"));
+                    return user;
+                } else return null;
+            } catch (SQLException e) {
+                e.printStackTrace();
+                throw new IllegalArgumentException(e);
+            }
+        } catch (SQLException e){
+            throw new IllegalArgumentException(e);
+        }
+    }
+
     @Override
     public User update(User user) {
         connection = DataBase.getInstance().getConnection();
-        String sqlQuery = "UPDATE user SET login = ?, password = ?, email = ?, permission_id = ?" +
+        String sqlQuery = "UPDATE user SET login = ?, password = ?, email = ?" +
                                             "WHERE id = ?";
         try (PreparedStatement ps = connection.prepareStatement(sqlQuery)){
             ps.setString(1, user.getLogin());
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getEmail());
-            ps.setInt(4, user.getPermissionId());
-            ps.setInt(5, user.getId());
+            ps.setInt(4, user.getId());
             ps.executeUpdate();
-            return read(user.getLogin());
+            return read(user.getId());
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         }

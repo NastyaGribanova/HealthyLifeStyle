@@ -1,5 +1,6 @@
 package userInterface;
 
+import beans.UserStatsBean;
 import businessLogic.StatsBL;
 import ii.BMI;
 import models.Sex;
@@ -9,6 +10,8 @@ import models.UserStats;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatsUI {
 
@@ -30,6 +33,18 @@ public class StatsUI {
 
         businessLogic.updateStats(userStats);
 
+        request.getSession().setAttribute("userStats", showInformation(userStats));
+
         response.sendRedirect("/profile");
+    }
+
+    public List showInformation(UserStats userStats){
+        List<Object> information = new ArrayList<>();
+        information.add(userStats.getAge());
+        information.add(userStats.getSex().toString().toLowerCase());
+        information.add(userStats.getWeight());
+        information.add(userStats.getHeight());
+        information.add(userStats.getBmi());
+        return information;
     }
 }

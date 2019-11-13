@@ -24,10 +24,11 @@ public class UserBL {
         } else return false;
     }
 
-    public void update(User user, String repeatPassword) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public User update(User user, String repeatPassword) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 
-        User foundUser = userDAO.read(user.getLogin());
+        User foundUser = userDAO.read(user.getId());
         User newUser = new User();
+        newUser.setId(user.getId());
 
         if (foundUser != null){
             if (user.getLogin() == null){
@@ -46,11 +47,14 @@ public class UserBL {
                 newUser.setPassword(foundUser.getPassword());
             } else {
                 if (checkPassword(user.getPassword(), repeatPassword)) {
-                    newUser.setPassword(user.getPassword());
+                    newUser.setPassword(getHash(user.getPassword()));
                 }
             }
 
-            userDAO.update(newUser);
+            user = userDAO.update(newUser);
+            return user;
+        } else{
+            return foundUser;
         }
     }
 

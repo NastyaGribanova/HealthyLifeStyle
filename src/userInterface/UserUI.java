@@ -57,11 +57,12 @@ public class UserUI {
         String email = request.getParameter("email");
 
         User user = new User();
+        user.setId(((User)request.getSession().getAttribute("user")).getId());
         user.setLogin(login.equals("") ? null : login);
         user.setPassword(password.equals("") ? null : password);
         user.setEmail(email.equals("") ? null : email);
 
-        userBl.update(user, repeatPassword);
+        request.getSession().setAttribute("user", userBl.update(user, repeatPassword));
 
         response.sendRedirect("/profile");
 
