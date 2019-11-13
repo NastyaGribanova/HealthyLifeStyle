@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/jsp/hrefs.jsp"%>
+<%@include file="/jsp/menu.jsp"%>
 <html>
 <head>
     <title>Admin</title>
