@@ -4,6 +4,7 @@
 <html>
 <head>
     <title>Admin</title>
+    <script type="application/javascript" src="js/forChange.js"></script>
 </head>
 <body class="text profile-body">
 
@@ -18,77 +19,35 @@
             <td>Sex</td>
             <td>Min age</td>
             <td>Max age</td>
-            <td>Blood pressure</td>
-            <td>Sleep duration</td>
-            <td>Activities</td>
-            <td>Add some activities</td>
+            <td>Min sys</td>
+            <td>Max sys</td>
+            <td>Min dia</td>
+            <td>Max dia</td>
+            <td>Sleep</td>
+            <td>Activity</td>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>Male</td>
-            <td>10</td>
-            <td>20</td>
-            <td>120/80</td>
-            <td>8</td>
-            <td>Pushing up(20), running(1km), swimming</td>
-            <td>
-                <input type="text" name="activity_1" class="text-form">
-                <input name="saveAct1" class="btn btn-outline-success" type="submit" value="Save">
-            </td>
-        </tr>
-
-        <tr>
-            <td>Female</td>
-            <td>10</td>
-            <td>20</td>
-            <td>120/80</td>
-            <td>8</td>
-            <td>Squats(20), running(0,6km), swimming</td>
-            <td>
-                <input type="text" name="activity_2" class="text-form">
-                <input name="saveAct2" class="btn btn-outline-success" type="submit" value="Save">
-            </td>
-        </tr>
-        <tr>
-            <td>Male</td>
-            <td>20</td>
-            <td>30</td>
-            <td>120/80</td>
-            <td>7</td>
-            <td>Pushing up(25), running(2km), pulling up(20), swimming</td>
-            <td><input type="text" name="activity_3" class="text-form">
-                <input name="saveAct3" class="btn btn-outline-success" type="submit" value="Save"> </td>
-        </tr>
-        <tr>
-            <td>Female</td>
-            <td>20</td>
-            <td>30</td>
-            <td>120/80</td>
-            <td>7</td>
-            <td>Squats(25), running(0,8km), press(30), swimming</td>
-            <td><input type="text" name="activity_4" class="text-form">
-                <input name="saveAct4" class="btn btn-outline-success" type="submit" value="Save"> </td>
-        </tr>
-        <tr>
-            <td>Male</td>
-            <td>30</td>
-            <td>40</td>
-            <td>130/80</td>
-            <td>6</td>
-            <td>Pushing up(15), running(2km), pulling up(20), swimming</td>
-            <td><input type="text" name="activity_5" class="text-form">
-                <input name="saveAct5" class="btn btn-outline-success" type="submit" value="Save"> </td>
-        </tr>
-        <tr>
-            <td>Female</td>
-            <td>30</td>
-            <td>40</td>
-            <td>130/80</td>
-            <td>6</td>
-            <td>Squats(25), running(0,8km), press(30), swimming</td>
-            <td><input type="text" name="activity_6" class="text-form">
-                <input name="saveAct6" class="btn btn-outline-success" type="submit" value="Save"> </td>
+            <td> <div class="btn-group">
+                <button type="button" id="sex" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sex
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" onclick="checkSex('Male')">Male</a>
+                    <a class="dropdown-item" onclick="checkSex('Female')">Female</a>
+                </div>
+            </div>
+                </td>
+            <td>  <input type="text" name="minAge" class="text-form"></td>
+            <td>  <input type="text" name="maxAge" class="text-form"></td>
+            <td>  <input type="text" name="minSYS" class="text-form"></td>
+            <td>  <input type="text" name="maxSYS" class="text-form"></td>
+            <td>  <input type="text" name="minDIA" class="text-form"></td>
+            <td>  <input type="text" name="maxDIA" class="text-form"></td>
+            <td>  <input type="text" name="sleep" class="text-form"></td>
+            <td>  <input type="text" name="nameActivity" class="text-form"></td>
+                <input name="save" class="btn btn-outline-success" type="submit" value="Save">
         </tr>
         </tbody>
     </table>
