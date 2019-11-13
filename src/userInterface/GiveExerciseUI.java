@@ -20,7 +20,7 @@ public class GiveExerciseUI {
 
     public void giveExercise(HttpServletRequest request, HttpServletResponse response){
         List<Exercise> exercises;
-        exercises = giveYouExercise.showAll(moderateValueDAO.readAll(), dailyInformationDAO.findByID (((User)(request.getSession().getAttribute("user"))).getId()),
+        exercises = giveYouExercise.giveExercise(moderateValueDAO.readAll(), dailyInformationDAO.findByID (((User)(request.getSession().getAttribute("user"))).getId()),
                 statsDAO.findByID(((User)(request.getSession().getAttribute("user"))).getId()));
         request.setAttribute("exercises", exercises);
     }

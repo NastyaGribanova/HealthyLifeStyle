@@ -40,7 +40,7 @@ public class StatsBL {
             if ((newUserStats.getWeight() != null)&&(newUserStats.getHeight() != null)) {
                 float bmi = imt.bmi(newUserStats.getWeight(), newUserStats.getHeight());
                 newUserStats.setBmi(bmi);
-                System.out.println(newUserStats.getBmi());
+
             } else {
                 float bmi = imt.bmi(foundUserStats.getWeight(), foundUserStats.getHeight());
                 newUserStats.setBmi(bmi);

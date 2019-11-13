@@ -102,12 +102,9 @@ public class UserUI {
         response.sendRedirect("/healthyLifeStyle");
     }
 
-    //метод doPost для страницы профиля
+    //метод doGet для страницы профиля
     public void profile(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException, ServletException {
-        if (request.getParameter("exercises") != null) {
-            giveExerciseUI.giveExercise(request, response);
-            System.out.println(request.getAttribute("exercises"));
-        }
+        giveExerciseUI.giveExercise(request, response);
         request.getRequestDispatcher("jsp/profilePage.jsp").forward(request, response);
     }
 }

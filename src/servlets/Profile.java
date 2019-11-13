@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 /*
     Страничка профиля
@@ -19,21 +20,19 @@ public class Profile extends HttpServlet {
     private UserUI businessLogic = new UserUI();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             businessLogic.profile(request, response);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        if (request.getSession().getAttribute("user") == null){
-            response.sendRedirect("/login");
-        } else {
-            request.getRequestDispatcher("jsp/profilePage.jsp").forward(request, response);
+            if (request.getSession().getAttribute("user") == null) {
+                response.sendRedirect("/login");
+            } else {
+                request.getRequestDispatcher("jsp/profilePage.jsp").forward(request, response);
+            }
         }
     }
 }

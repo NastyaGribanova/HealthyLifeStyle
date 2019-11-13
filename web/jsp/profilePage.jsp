@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="firstSet" tagdir="/WEB-INF/tags/exerciseTags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/jsp/hrefs.jsp"%>
 <%@include file="/jsp/menu.jsp"%>
@@ -43,10 +44,10 @@
         </div>
     </form>
 </div>
-<form action="profile" method="post">
-<p> <input name="exercises"  class="btn btn-outline-success button" type="submit" value="Receive exercises">  </p>
-</form>
-<div id="slider">
+
+<p> <input name="exercises" onclick="showSlider()" class="btn btn-outline-success button" type="submit" value="Receive exercises">  </p>
+
+<div id="slider" hidden>
     <div class="carousel slide pointer-event" id="carouselExampleCaptions" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0"></li>
@@ -58,41 +59,23 @@
             <div class="carousel-item active">
                 <img class="d-block w-100" alt="..." src="slider.png">
                 <div class="carousel-caption d-none d-md-block text">
-                    <%List<Exercise> exercises = (ArrayList<Exercise>) request.getAttribute("exercises");%>
-                          <table>
-                            <c:forEach var="exercise" items="${exercises}">
-                                <p>${exercise.getName()}<input type="button" value="Do" onclick="showDescription(1)" class="btn btn-outline-success" name="doExercise1"></p>
-                                <p id="description1" hidden>${exercise.getDescription()}</p>
-                                <p> </p>
-                            </c:forEach>
-                            </table>
+                    <firstSet:firstSetExercise/>
                 </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" alt="..." src="slider.png">
                 <div class="carousel-caption d-none d-md-block text">
-                    <h2 class="text">Second exercises:</h2>
-                    <p>First exercise <input type="button" value="Do" onclick="showDescription(4)" class="btn btn-outline-success" name="doExercise1"></p>
-                    <p id="description4" hidden>Very very very good exercise 1</p>
-                    <p>Second exercise <input type="button" value="Do" onclick="showDescription(5)" class="btn btn-outline-success" name="doExercise2"></p>
-                    <p id="description5" hidden>Very very very good exercise 2</p>
-                    <p>Third exercise <input type="button" value="Do" onclick="showDescription(6)" class="btn btn-outline-success" name="doExercise3"></p>
-                    <p id="description6" hidden>Very very very good exercise 3</p>
+                    <firstSet:secondSetExercise/>
                 </div>
             </div>
             <div class="carousel-item">
                 <img class="d-block w-100" alt="..." src="slider.png">
                 <div class="carousel-caption d-none d-md-block text">
-                    <h2 class="text">Third exercises:</h2>
-                    <p>First exercise <input type="button" value="Do" onclick="showDescription(7)" class="btn btn-outline-success" name="doExercise1"></p>
-                    <p id="description7" hidden>Very very very good exercise 1</p>
-                    <p>Second exercise <input type="button" value="Do" onclick="showDescription(8)" class="btn btn-outline-success" name="doExercise2"></p>
-                    <p id="description8" hidden>Very very very good exercise 2</p>
-                    <p>Third exercise <input type="button" value="Do" onclick="showDescription(9)" class="btn btn-outline-success" name="doExercise3"></p>
-                    <p id="description9" hidden>Very very very good exercise 3</p>
+                   <firstSet:thirdSetExercise/>
                 </div>
             </div>
         </div>
+
         <a class="carousel-control-prev" role="button" href="#carouselExampleCaptions" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
