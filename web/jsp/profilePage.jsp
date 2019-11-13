@@ -69,7 +69,8 @@
             <div class="card-header text" id="date"></div>
             <div class="card-body text">
                 Sleep time = <input name="sleepTime" type="text">
-                <p>  Pressure  =  <input name="pressure" type="text"> </p>
+                <p>  Systolic pressure  =  <input name="pressureSYS" type="text"> </p>
+                <p>  Diastolic pressure  =  <input name="pressureDIA" type="text"> </p>
                 <p>  <input name="save" style="margin-left: 180px;" id="savePressure" class="btn btn-outline-success" type="submit" value="Save"></p>
             </div>
         </div>
