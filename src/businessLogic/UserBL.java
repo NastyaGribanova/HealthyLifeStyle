@@ -100,6 +100,4 @@ public class UserBL {
         }
         return sb.append(s2).toString();
     }
-
-
 }

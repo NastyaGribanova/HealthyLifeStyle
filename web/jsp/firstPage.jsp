@@ -24,7 +24,10 @@
     <form method="post" >
         <input type="submit" class="btn btn-outline-success" value="Start your better life!" name="login">
     </form>
-</div>
 
+<form method="post" action="comments">
+    <input name="comments" class="btn btn-outline-success" type="submit" value="Comments">
+</form>
+</div>
 </body>
 </html>

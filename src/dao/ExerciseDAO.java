@@ -21,7 +21,7 @@ public class ExerciseDAO {
             statement = connection.prepareStatement("INSERT INTO activity (name, description)" +
                     "VALUES (?, ?)");
             statement.setString(1, exercise.getName());
-            statement.setString(1, exercise.getDescription());
+            statement.setString(2, exercise.getDescription());
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalStateException(e);
@@ -37,6 +37,26 @@ public class ExerciseDAO {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 Exercise exercise = new Exercise();
+                exercise.setName(resultSet.getString("name"));
+                exercise.setDescription(resultSet.getString("description"));
+                return exercise;
+            } else return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException(e);
+        }
+    }
+
+    public Exercise findByName(String name){
+        PreparedStatement statement;
+        connection = DataBase.getInstance().getConnection();
+        try {
+            statement = connection.prepareStatement("SELECT * FROM activity WHERE name = ?");
+            statement.setString(1, name);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                Exercise exercise = new Exercise();
+                exercise.setId(resultSet.getInt("id"));
                 exercise.setName(resultSet.getString("name"));
                 exercise.setDescription(resultSet.getString("description"));
                 return exercise;
@@ -64,6 +84,29 @@ public class ExerciseDAO {
             }
         } catch (SQLException e) {
             throw new IllegalArgumentException(e);
+        }
+        return exercises;
+    }
+
+    public List<Exercise> findByQuery(String query) {
+        List<Exercise> exercises = new ArrayList<Exercise>();
+        connection = DataBase.getInstance().getConnection();
+        String sqlQquery = "SELECT * FROM activity WHERE name like ?";
+        try (PreparedStatement ps = connection.prepareStatement(sqlQquery)) {
+            ps.setString(1, "%" + query + "%");
+            try (ResultSet resultSet = ps.executeQuery()) {
+                while (resultSet.next()) {
+                    Exercise exercise = new Exercise();
+                    exercise.setId(resultSet.getInt("id"));
+                    exercise.setName(resultSet.getString("name"));
+                    exercise.setDescription(resultSet.getString("description"));
+                    exercises.add(exercise);
+                }
+            } catch (SQLException e) {
+                throw new IllegalStateException();
+            }
+        } catch (SQLException e) {
+            throw new IllegalStateException();
         }
         return exercises;
     }

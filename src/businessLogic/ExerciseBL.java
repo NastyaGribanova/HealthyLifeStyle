@@ -9,12 +9,16 @@ public class ExerciseBL {
 
     ExerciseDAO exerciseDAO = new ExerciseDAO();
 
-    public void exercise(Exercise exercise){
+    public void createExercise(Exercise exercise){
         exerciseDAO.create(exercise);
     }
 
     public List<Exercise> readAll(){
         return exerciseDAO.readAll();
+    }
+
+    public Exercise findByName(String name){
+        return exerciseDAO.findByName(name);
     }
 
 }

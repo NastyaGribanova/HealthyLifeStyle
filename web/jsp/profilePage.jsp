@@ -43,10 +43,10 @@
         </div>
     </form>
 </div>
-
-<p> <input name="exercises" onclick="showSlider()" class="btn btn-outline-success button" type="submit" value="Receive exercises">  </p>
-
-<div id="slider" hidden>
+<form action="profile" method="post">
+<p> <input name="exercises"  class="btn btn-outline-success button" type="submit" value="Receive exercises">  </p>
+</form>
+<div id="slider">
     <div class="carousel slide pointer-event" id="carouselExampleCaptions" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#carouselExampleCaptions" data-slide-to="0"></li>
@@ -54,23 +54,18 @@
             <li class="active" data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol>
 
-        <%List<Exercise> exercises = (ArrayList<Exercise>) request.getAttribute("exercises");%>
-        <c:forEach var="exercise" items="${exercises}">
-
-        </c:forEach>
-
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" alt="..." src="slider.png">
                 <div class="carousel-caption d-none d-md-block text">
-                    <h2 class="text">First exercises:</h2>
-                    <p>First: <input type="button" value="Do" onclick="showDescription(1)" class="btn btn-outline-success" name="doExercise1"></p>
-                    <p id="description1" hidden>Very very very good exercise 1</p>
-                    <p>Second exercise <input type="button" value="Do" onclick="showDescription(2)" class="btn btn-outline-success" name="doExercise2"></p>
-                    <p id="description2" hidden>Very very very good exercise 2</p>
-                    <p>Third exercise <input type="button" value="Do" onclick="showDescription(3)" class="btn btn-outline-success" name="doExercise3"></p>
-                    <p id="description3" hidden>Very very very good exercise 3</p>
-
+                    <%List<Exercise> exercises = (ArrayList<Exercise>) request.getAttribute("exercises");%>
+                          <table>
+                            <c:forEach var="exercise" items="${exercises}">
+                                <p>${exercise.getName()}<input type="button" value="Do" onclick="showDescription(1)" class="btn btn-outline-success" name="doExercise1"></p>
+                                <p id="description1" hidden>${exercise.getDescription()}</p>
+                                <p> </p>
+                            </c:forEach>
+                            </table>
                 </div>
             </div>
             <div class="carousel-item">

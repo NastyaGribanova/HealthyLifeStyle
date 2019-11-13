@@ -9,6 +9,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/show")
 public class Show extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.sendRedirect("/profileShow");
     }

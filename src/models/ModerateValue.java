@@ -2,7 +2,7 @@ package models;
 
 public class ModerateValue {
 
-    String sex;
+    private Sex sex;
     Integer minAge;
     Integer maxAge;
     Integer minSYS;
@@ -12,12 +12,11 @@ public class ModerateValue {
     Integer sleep;
     Exercise exercise;
 
-
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 

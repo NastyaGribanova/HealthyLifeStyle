@@ -26,6 +26,7 @@
                     <a class="dropdown-item" onclick="checkSex('Female')">Female</a>
                 </div>
             </div>
+                <input name="sex" id="sex-id" hidden>
         </tr>
         <tr>
             <td>Min age</td>

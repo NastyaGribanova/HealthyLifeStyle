@@ -4,7 +4,6 @@ import userInterface.UserUI;
 
 import java.io.IOException;
 
-
 /*
     Первая страничка, которая встречает пользователя
  */

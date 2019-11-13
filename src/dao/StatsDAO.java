@@ -1,7 +1,6 @@
 package dao;
 
 import models.Sex;
-import models.User;
 import models.UserStats;
 import util.DataBase;
 

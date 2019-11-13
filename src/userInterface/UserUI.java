@@ -3,17 +3,18 @@ package userInterface;
 import businessLogic.UserBL;
 import models.User;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 public class UserUI {
 
     private UserBL userBl = new UserBL();
+    private GiveExerciseUI giveExerciseUI = new GiveExerciseUI();
 
     //Проверка на существование кук
     public boolean checkCookie(Cookie[] cookies) {
@@ -92,10 +93,21 @@ public class UserUI {
         }else response.sendRedirect("/registration");
     }
 
-    //метод doPost для страницы профиля
-    public void profile(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException{
-
+    //метод выхода из профиля
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.getSession().setAttribute("user", null);
+        Cookie loginCookie = new Cookie("login", "false");
+        loginCookie.setMaxAge(0);
+        response.addCookie(loginCookie);
+        response.sendRedirect("/healthyLifeStyle");
     }
 
-
+    //метод doPost для страницы профиля
+    public void profile(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException, ServletException {
+        if (request.getParameter("exercises") != null) {
+            giveExerciseUI.giveExercise(request, response);
+            System.out.println(request.getAttribute("exercises"));
+        }
+        request.getRequestDispatcher("jsp/profilePage.jsp").forward(request, response);
+    }
 }

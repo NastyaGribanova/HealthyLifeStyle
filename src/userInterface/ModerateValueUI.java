@@ -2,16 +2,14 @@ package userInterface;
 
 import businessLogic.ExerciseBL;
 import businessLogic.ModerateValueBL;
-import dao.ExerciseDAO;
 import ii.GiveYouExercise;
 import models.Exercise;
 import models.ModerateValue;
-import models.User;
+import models.Sex;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 public class ModerateValueUI {
 
@@ -19,7 +17,7 @@ public class ModerateValueUI {
     ExerciseBL exerciseBL = new ExerciseBL();
     GiveYouExercise giveYouExercise = new GiveYouExercise();
 
-    public void moderate(HttpServletRequest request, HttpServletResponse response){
+    public void moderate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String sex = request.getParameter("sex");
         String minAge = request.getParameter("minAge");
         String maxAge = request.getParameter("maxAge");
@@ -34,10 +32,11 @@ public class ModerateValueUI {
         Exercise exercise = new Exercise();
         exercise.setName(nameActivity);
         exercise.setDescription(description);
-        exerciseBL.exercise(exercise);
+        exerciseBL.createExercise(exercise);
+        exercise.setId(exerciseBL.findByName(nameActivity).getId());
 
         ModerateValue moderateValue = new ModerateValue();
-        moderateValue.setSex(sex);
+        moderateValue.setSex(sex.equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE);
         moderateValue.setMinAge(Integer.parseInt(minAge));
         moderateValue.setMaxAge(Integer.parseInt(maxAge));
         moderateValue.setMinSYS(Integer.parseInt(minSYS));
@@ -47,14 +46,14 @@ public class ModerateValueUI {
         moderateValue.setSleep(Integer.parseInt(sleep));
         moderateValue.setExercise(exercise);
 
-        moderateValueBL.moderateValue(moderateValue);
+        moderateValueBL.createModerateValue(moderateValue);
 
-        //подходящие нам упражнения -> profile
-        List<Exercise> exercises;
-        exercises = giveYouExercise.showAll(moderateValue, ((User)(request.getSession().getAttribute("user"))).getDailyInformation(),
-                                ((User)(request.getSession().getAttribute("user"))).getUserStats());
-        request.setAttribute("exercises", exercises);
+        showAll(request);
 
+        response.sendRedirect("/showExercises");
+    }
+
+    public void showAll(HttpServletRequest request){
         request.setAttribute("moderateValues", moderateValueBL.readModerateValues());
         request.setAttribute("allExercises", exerciseBL.readAll());
     }

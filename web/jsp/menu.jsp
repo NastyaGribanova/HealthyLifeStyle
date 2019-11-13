@@ -16,7 +16,7 @@
         </li>
         <c:if test="${sessionScope.user.permissionId==2}">
             <a><li class="nav-item">
-                <form method="post" action="exercise">
+                <form method="post" action="/exercise">
                     <input name="addExercises" class="btn btn-outline-success button" type="submit" value="Add exercises">
                 </form>
             </li>

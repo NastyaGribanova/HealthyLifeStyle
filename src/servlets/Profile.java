@@ -23,10 +23,13 @@ public class Profile extends HttpServlet {
             businessLogic.profile(request, response);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
+        } catch (ServletException e) {
+            e.printStackTrace();
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         if (request.getSession().getAttribute("user") == null){
             response.sendRedirect("/login");
         } else {

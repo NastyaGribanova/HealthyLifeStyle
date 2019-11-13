@@ -9,7 +9,7 @@ public class ModerateValueBL {
 
     ModerateValueDAO moderateValueDAO = new ModerateValueDAO();
 
-    public void moderateValue(ModerateValue moderateValue){
+    public void createModerateValue(ModerateValue moderateValue){
         moderateValueDAO.create(moderateValue);
     }
 

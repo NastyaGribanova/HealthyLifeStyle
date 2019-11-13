@@ -6,5 +6,4 @@ public class BMI {
         float bmi = 10000 * weight / (height * height);
         return bmi;
     }
-
 }

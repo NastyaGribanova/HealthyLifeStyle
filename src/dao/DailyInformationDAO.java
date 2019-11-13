@@ -60,6 +60,5 @@ public class DailyInformationDAO {
             e.printStackTrace();
             throw new IllegalArgumentException(e);
         }
-
     }
 }

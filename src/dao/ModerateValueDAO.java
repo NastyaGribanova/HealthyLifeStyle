@@ -1,7 +1,7 @@
 package dao;
 
-import models.Exercise;
 import models.ModerateValue;
+import models.Sex;
 import util.DataBase;
 
 import java.sql.Connection;
@@ -14,17 +14,16 @@ import java.util.List;
 public class ModerateValueDAO {
 
     private Connection connection;
-    private ExerciseDAO exerciseDAO;
+    private ExerciseDAO exerciseDAO = new ExerciseDAO();
 
     public void create(ModerateValue moderateValue) {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
-            statement = connection.prepareStatement("INSERT INTO moderate_value (sex, min_age, max_age, " +
-                    "min_blood_pressure_sys, max_blood_pressure_sys, min_blood_pressure_dia, max_blood_pressure_dia, " +
-                    "sleep_duration, activity_id, " +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            statement.setString(1, moderateValue.getSex());
+            statement = connection.prepareStatement("INSERT INTO moderate_value (sex, min_age, max_age, min_blood_pressure_sys, max_blood_pressure_sys, min_blood_pressure_dia, max_blood_pressure_dia, " +
+                    "sleep_duration,activity_id)" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?) ");
+            statement.setString(1, moderateValue.getSex().name());
             statement.setInt(2, moderateValue.getMinAge());
             statement.setInt(3, moderateValue.getMaxAge());
             statement.setInt(4, moderateValue.getMinSYS());
@@ -32,6 +31,7 @@ public class ModerateValueDAO {
             statement.setInt(6, moderateValue.getMinDIA());
             statement.setInt(7, moderateValue.getMaxDIA());
             statement.setInt(8, moderateValue.getSleep());
+            System.out.println( moderateValue.getExercise().getId());
             statement.setInt(9, moderateValue.getExercise().getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -39,7 +39,7 @@ public class ModerateValueDAO {
         }
     }
 
-    public ModerateValue findByID(int id){
+    public ModerateValue findByID(int id) {
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
@@ -48,7 +48,7 @@ public class ModerateValueDAO {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 ModerateValue moderateValue = new ModerateValue();
-                moderateValue.setSex(resultSet.getString("sex"));
+                moderateValue.setSex(resultSet.getString("sex").equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE);
                 moderateValue.setMinAge(resultSet.getInt("min_age"));
                 moderateValue.setMaxAge(resultSet.getInt("max_age"));
                 moderateValue.setMinSYS(resultSet.getInt("min_blood_pressure_sys"));
@@ -64,15 +64,15 @@ public class ModerateValueDAO {
         }
     }
 
-    public List<ModerateValue> readAll(){
+    public List<ModerateValue> readAll() {
         connection = DataBase.getInstance().getConnection();
         List<ModerateValue> moderateValues = new ArrayList<>();
         String sqlQquery = "SELECT * FROM moderate_value";
-        try (PreparedStatement ps = connection.prepareStatement(sqlQquery)){
+        try (PreparedStatement ps = connection.prepareStatement(sqlQquery)) {
             try (ResultSet resultSet = ps.executeQuery()) {
                 while (resultSet.next()) {
                     ModerateValue moderateValue = new ModerateValue();
-                    moderateValue.setSex(resultSet.getString("sex"));
+                    moderateValue.setSex(resultSet.getString("sex").equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE);
                     moderateValue.setMinAge(resultSet.getInt("min_age"));
                     moderateValue.setMaxAge(resultSet.getInt("max_age"));
                     moderateValue.setMinSYS(resultSet.getInt("min_blood_pressure_sys"));
@@ -83,7 +83,7 @@ public class ModerateValueDAO {
                     moderateValue.setExercise(exerciseDAO.findByID(resultSet.getInt("activity_id")));
                     moderateValues.add(moderateValue);
                 }
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 throw new IllegalArgumentException(e);
             }
         } catch (SQLException e) {
