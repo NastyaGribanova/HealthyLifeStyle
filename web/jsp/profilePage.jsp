@@ -11,7 +11,7 @@
 
 <nav class="nav" style="width: 100%; margin: 0; background: #28a745; color: white;">
 
-    <ul class="nav justify-content-end" style="margin-top: 10px; margin-left: 100px">
+    <ul class="nav justify-content-end" style="margin-top: 10px;">
         <a class="nav-link active" style="font-weight: bold; font-size: 30px">${user.login}</a>
         <c:if test="${sessionScope.user.permissionId==2}">
             <a><li class="nav-item">
@@ -19,7 +19,8 @@
                     <input name="addExercises" class="btn btn-outline-success button" type="submit" value="Add exercises">
                 </form>
             </li>
-
+            </a>
+            <a>
                 <li class="nav-item">
                     <form method="post" action="trainer">
                         <input name="addTrainer" class="btn btn-outline-success button"  type="submit" value="Add trainer">
@@ -68,7 +69,7 @@
         <div class="card bg-light mb-3 card-profile" style="width: 500px;   position: absolute; top: 125pt; left: 50%">
             <div class="card-header text" id="date"></div>
             <div class="card-body text">
-                Sleep time = <input name="sleepTime" type="text">
+                <p>Sleep time = <input name="sleepTime" type="text"></p>
                 <p>  Systolic pressure  =  <input name="pressureSYS" type="text"> </p>
                 <p>  Diastolic pressure  =  <input name="pressureDIA" type="text"> </p>
                 <p>  <input name="save" style="margin-left: 180px;" id="savePressure" class="btn btn-outline-success" type="submit" value="Save"></p>

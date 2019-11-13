@@ -15,6 +15,6 @@ public class AddExercises extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("jsp/addExercises.jsp").forward(request, response);
+        request.getRequestDispatcher("jsp/adminPage.jsp").forward(request, response);
     }
 }
