@@ -22,8 +22,8 @@
                     Sex
                 </button>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" onclick="checkSex('Male')">Male</a>
-                    <a class="dropdown-item" onclick="checkSex('Female')">Female</a>
+                    <a class="dropdown-item" onclick="checkSex('male')">Male</a>
+                    <a class="dropdown-item" onclick="checkSex('female')">Female</a>
                 </div>
             </div>
                 <input name="sex" id="sex-id" hidden>

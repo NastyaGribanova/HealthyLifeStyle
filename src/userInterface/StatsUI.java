@@ -24,7 +24,7 @@ public class StatsUI {
 
         UserStats userStats = new UserStats();
         userStats.setAge(age.equals("") ? null: Integer.parseInt(age));
-        userStats.setSex(sex.equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE);
+        userStats.setSex(sex.equals(Sex.male.name()) ? Sex.male : Sex.female);
         userStats.setWeight(weight.equals("") ? null: Integer.parseInt(weight));
         userStats.setHeight(height.equals("") ? null: Integer.parseInt(height));
         userStats.setUserID(((User)request.getSession().getAttribute("user")).getId());

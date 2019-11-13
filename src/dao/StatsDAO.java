@@ -57,7 +57,7 @@ public class StatsDAO {
                 userStats.setAge(resultSet.getInt("age"));
                 userStats.setWeight(resultSet.getInt("weight"));
                 userStats.setHeight(resultSet.getInt("height"));
-                userStats.setSex(resultSet.getString("sex").equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE );
+                userStats.setSex(resultSet.getString("sex").equals(Sex.male.name()) ? Sex.male : Sex.female );
                 userStats.setBmi(resultSet.getFloat("bmi"));
                 return userStats;
             } else return null;

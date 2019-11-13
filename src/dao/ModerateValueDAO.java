@@ -48,7 +48,7 @@ public class ModerateValueDAO {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 ModerateValue moderateValue = new ModerateValue();
-                moderateValue.setSex(resultSet.getString("sex").equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE);
+                moderateValue.setSex(resultSet.getString("sex").equals(Sex.male.name()) ? Sex.male : Sex.female);
                 moderateValue.setMinAge(resultSet.getInt("min_age"));
                 moderateValue.setMaxAge(resultSet.getInt("max_age"));
                 moderateValue.setMinSYS(resultSet.getInt("min_blood_pressure_sys"));
@@ -72,7 +72,7 @@ public class ModerateValueDAO {
             try (ResultSet resultSet = ps.executeQuery()) {
                 while (resultSet.next()) {
                     ModerateValue moderateValue = new ModerateValue();
-                    moderateValue.setSex(resultSet.getString("sex").equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE);
+                    moderateValue.setSex(resultSet.getString("sex").equals(Sex.male.name()) ? Sex.male : Sex.female);
                     moderateValue.setMinAge(resultSet.getInt("min_age"));
                     moderateValue.setMaxAge(resultSet.getInt("max_age"));
                     moderateValue.setMinSYS(resultSet.getInt("min_blood_pressure_sys"));

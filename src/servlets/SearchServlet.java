@@ -3,6 +3,7 @@ package servlets;
 import businessLogic.SearchBL;
 import models.Exercise;
 import org.json.JSONObject;
+import userInterface.SearchUI;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,16 +16,13 @@ import java.util.List;
 @WebServlet(urlPatterns = "/dosearch")
 public class SearchServlet extends HttpServlet {
 
+    SearchUI businessLogic = new SearchUI();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SearchBL searchBL = new SearchBL();
-        List<Exercise> exercises;
-        exercises = searchBL.getSearchFiles(request);
-        JSONObject jsonObject = searchBL.getResponseAsJson(exercises);
-        response.setContentType("text/json");
-        response.getWriter().write(jsonObject.toString());
+        businessLogic.doSearch(request, response);
     }
 }

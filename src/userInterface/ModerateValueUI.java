@@ -15,7 +15,6 @@ public class ModerateValueUI {
 
     ModerateValueBL moderateValueBL = new ModerateValueBL();
     ExerciseBL exerciseBL = new ExerciseBL();
-    GiveYouExercise giveYouExercise = new GiveYouExercise();
 
     public void moderate(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String sex = request.getParameter("sex");
@@ -36,7 +35,7 @@ public class ModerateValueUI {
         exercise.setId(exerciseBL.findByName(nameActivity).getId());
 
         ModerateValue moderateValue = new ModerateValue();
-        moderateValue.setSex(sex.equals(Sex.MALE.name()) ? Sex.MALE : Sex.FEMALE);
+        moderateValue.setSex(sex.equals(Sex.male.name()) ? Sex.male : Sex.female);
         moderateValue.setMinAge(Integer.parseInt(minAge));
         moderateValue.setMaxAge(Integer.parseInt(maxAge));
         moderateValue.setMinSYS(Integer.parseInt(minSYS));
@@ -55,6 +54,5 @@ public class ModerateValueUI {
 
     public void showAll(HttpServletRequest request){
         request.setAttribute("moderateValues", moderateValueBL.readModerateValues());
-        request.setAttribute("allExercises", exerciseBL.readAll());
     }
 }
