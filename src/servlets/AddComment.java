@@ -15,7 +15,7 @@ public class AddComment extends HttpServlet {
     CommentUI businessLogic = new CommentUI();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        businessLogic.comment(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

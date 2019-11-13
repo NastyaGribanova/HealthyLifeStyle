@@ -12,23 +12,10 @@
     <p style="font-size: 25px " >You can change or add some exercises</p>
 </div>
 
-<form method="post">
-    <table class="table text">
-        <thead>
+<table class="table text" align="center">
+    <form method="post" >
         <tr>
-            <td>Sex</td>
-            <td>Min age</td>
-            <td>Max age</td>
-            <td>Min sys</td>
-            <td>Max sys</td>
-            <td>Min dia</td>
-            <td>Max dia</td>
-            <td>Sleep</td>
-            <td>Activity</td>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
+            <td> Sex</td>
             <td> <div class="btn-group">
                 <button type="button" id="sex" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sex
@@ -38,20 +25,41 @@
                     <a class="dropdown-item" onclick="checkSex('Female')">Female</a>
                 </div>
             </div>
-                </td>
-            <td>  <input type="text" name="minAge" class="text-form"></td>
-            <td>  <input type="text" name="maxAge" class="text-form"></td>
-            <td>  <input type="text" name="minSYS" class="text-form"></td>
-            <td>  <input type="text" name="maxSYS" class="text-form"></td>
-            <td>  <input type="text" name="minDIA" class="text-form"></td>
-            <td>  <input type="text" name="maxDIA" class="text-form"></td>
-            <td>  <input type="text" name="sleep" class="text-form"></td>
-            <td>  <input type="text" name="nameActivity" class="text-form"></td>
-                <input name="save" class="btn btn-outline-success" type="submit" value="Save">
         </tr>
-        </tbody>
-    </table>
-</form>
+        <tr>
+            <td>Min age</td>
+            <td> <input type="text" name="minAge" class="text-form" required></td>
+        </tr><tr>
+        <td>Max age</td>
+        <td> <input type="text" name="maxAge" class="text-form" required></td>
+    </tr><tr>
+        <td>Min sys</td>
+        <td> <input type="text" name="minSYS" class="text-form" required></td>
+    </tr><tr>
+        <td>Max sys</td>
+        <td> <input type="text" name="maxSYS" class="text-form" required></td>
+    </tr><tr>
+        <td>Min dia</td>
+        <td> <input type="text" name="minDIA" class="text-form" required></td>
+    </tr><tr>
+        <td>Max dia</td>
+        <td> <input type="text" name="maxDIA" class="text-form" required></td>
+    </tr><tr>
+        <td>Sleep</td>
+        <td> <input type="text" name="sleep" class="text-form" required></td>
+    </tr><tr>
+        <td>Activity</td>
+        <td> <input type="text" name="nameActivity" class="text-form" required></td>
+    </tr>
+
+        <td> <p><input name="save" class="btn btn-outline-success" type="submit" value="Save"></p>
+        </td>
+    </form>
+    <tr><td><form method="post" >
+        <p><input name="showExercises" class="btn btn-outline-success" type="submit" value="Show all exercises"></p></form></td></tr>
+</table>
+
+
 
 </body>
 </html>

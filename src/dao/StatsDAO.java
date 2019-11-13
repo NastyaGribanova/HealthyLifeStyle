@@ -27,7 +27,7 @@ public class StatsDAO {
         }
     }
 
-    public void update(UserStats userStats){
+    public UserStats update(UserStats userStats){
         PreparedStatement statement;
         connection = DataBase.getInstance().getConnection();
         try {
@@ -40,6 +40,7 @@ public class StatsDAO {
             statement.setFloat(5, userStats.getBmi());
             statement.setInt(6, userStats.getUserID());
             statement.executeUpdate();
+            return findByID(userStats.getUserID());
         } catch (SQLException e) {
             throw new IllegalStateException(e);
         }

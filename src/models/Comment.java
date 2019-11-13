@@ -1,10 +1,10 @@
 package models;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Comment {
     int id;
-    int user_id;
+    int userId;
     String description;
     Date date;
 
@@ -16,12 +16,12 @@ public class Comment {
         this.id = id;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getDescription() {

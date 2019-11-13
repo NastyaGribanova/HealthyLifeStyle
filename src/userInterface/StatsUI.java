@@ -1,8 +1,6 @@
 package userInterface;
 
-import beans.UserStatsBean;
 import businessLogic.StatsBL;
-import ii.BMI;
 import models.Sex;
 import models.User;
 import models.UserStats;
@@ -31,7 +29,7 @@ public class StatsUI {
         userStats.setHeight(height.equals("") ? null: Integer.parseInt(height));
         userStats.setUserID(((User)request.getSession().getAttribute("user")).getId());
 
-        businessLogic.updateStats(userStats);
+        userStats = businessLogic.updateStats(userStats);
 
         request.getSession().setAttribute("userStats", showInformation(userStats));
 

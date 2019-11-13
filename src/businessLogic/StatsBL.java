@@ -9,7 +9,7 @@ public class StatsBL {
     StatsDAO dao = new StatsDAO();
     private BMI imt = new BMI();
 
-    public void updateStats(UserStats userStats){
+    public UserStats updateStats(UserStats userStats){
         UserStats foundUserStats = dao.findByID(userStats.getUserID());
         UserStats newUserStats = new UserStats();
         if (foundUserStats != null){
@@ -40,11 +40,17 @@ public class StatsBL {
             if ((newUserStats.getWeight() != null)&&(newUserStats.getHeight() != null)) {
                 float bmi = imt.bmi(newUserStats.getWeight(), newUserStats.getHeight());
                 newUserStats.setBmi(bmi);
+                System.out.println(newUserStats.getBmi());
+            } else {
+                float bmi = imt.bmi(foundUserStats.getWeight(), foundUserStats.getHeight());
+                newUserStats.setBmi(bmi);
             }
 
             newUserStats.setUserID(userStats.getUserID());
-            dao.update(newUserStats);
+            return dao.update(newUserStats);
 
+        } else{
+            return userStats;
         }
     }
 }

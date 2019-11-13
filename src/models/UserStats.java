@@ -50,7 +50,8 @@ public class UserStats {
     }
 
     public Float getBmi() {
-        return (float)(10000 * weight / (height * height));
+        //return (float)(10000 * weight / (height * height));
+        return bmi;
     }
 
     public void setBmi(Float bmi) {
