@@ -4,9 +4,9 @@ import java.sql.Date;
 
 public class Comment {
     int id;
-    int userId;
     String description;
     Date date;
+    User user;
 
     public int getId() {
         return id;
@@ -14,14 +14,6 @@ public class Comment {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getDescription() {
@@ -38,5 +30,13 @@ public class Comment {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

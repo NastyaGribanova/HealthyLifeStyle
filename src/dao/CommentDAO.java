@@ -13,6 +13,7 @@ import java.util.List;
 public class CommentDAO {
 
     private Connection connection;
+    UserDAO userDAO = new UserDAO();
 
     public void create(Comment comment) {
         PreparedStatement statement;
@@ -20,7 +21,7 @@ public class CommentDAO {
         try {
             statement = connection.prepareStatement("INSERT INTO comment (user_id, description, date)" +
                     "VALUES (?, ?, ?)");
-            statement.setInt(1, comment.getUserId());
+            statement.setInt(1, comment.getUser().getId());
             statement.setString(2, comment.getDescription());
             statement.setDate(3, comment.getDate());
             statement.executeUpdate();
@@ -37,7 +38,7 @@ public class CommentDAO {
             try (ResultSet resultSet = ps.executeQuery()) {
                 while (resultSet.next()) {
                     Comment comment = new Comment();
-                    comment.setUserId(resultSet.getInt("user_id"));
+                    comment.setUser(userDAO.read(resultSet.getInt("user_id")));
                     comment.setDescription(resultSet.getString("description"));
                     comment.setDate(resultSet.getDate("date"));
                     comments.add(comment);

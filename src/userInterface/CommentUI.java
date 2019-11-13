@@ -7,6 +7,7 @@ import models.User;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Date;
+import java.util.List;
 
 public class CommentUI {
 
@@ -14,16 +15,20 @@ public class CommentUI {
 
     public void comment(HttpServletRequest request, HttpServletResponse response){
         String description = request.getParameter("comment");
-        int id = ((User)(request.getSession().getAttribute("user"))).getId();
+        User user = ((User)(request.getSession().getAttribute("user")));
         Date date = new Date((new java.util.Date()).getTime());
 
         Comment comment = new Comment();
         comment.setDescription(description);
-        comment.setUserId(id);
+        comment.setUser(user);
         comment.setDate(date);
 
         businessLogic.comment(comment);
 
+        request.setAttribute("comments", businessLogic.readComments());
+    }
 
+    public void showComments (HttpServletRequest request){
+        request.setAttribute("comments", businessLogic.readComments());
     }
 }
