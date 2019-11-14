@@ -10,7 +10,7 @@
         <a class="nav-link active" style="font-weight: bold; font-size: 30px">${user.login}</a>
         <li class="nav-item">
             <a>
-                <form method="post" action="show">
+                <form method="post" action="profilee">
                     <input name="profile" class="btn btn-outline-success button" type="submit" value="Profile">
                 </form></a>
         </li>

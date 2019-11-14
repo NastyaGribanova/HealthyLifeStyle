@@ -67,6 +67,5 @@ public class StatsDAO {
             e.printStackTrace();
             throw new IllegalArgumentException(e);
         }
-
     }
 }

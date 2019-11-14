@@ -1,3 +1,6 @@
+<%@ page import="models.Exercise" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tag" tagdir="/WEB-INF/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -50,12 +53,18 @@
             <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
             <li class="active" data-target="#carouselExampleCaptions" data-slide-to="2"></li>
         </ol>
+
+        <%List<Exercise> exercises = (ArrayList<Exercise>) request.getAttribute("exercises");%>
+        <c:forEach var="exercise" items="${exercises}">
+
+        </c:forEach>
+
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img class="d-block w-100" alt="..." src="slider.png">
                 <div class="carousel-caption d-none d-md-block text">
                     <h2 class="text">First exercises:</h2>
-                    <p>First exercise <input type="button" value="Do" onclick="showDescription(1)" class="btn btn-outline-success" name="doExercise1"></p>
+                    <p>First: <input type="button" value="Do" onclick="showDescription(1)" class="btn btn-outline-success" name="doExercise1"></p>
                     <p id="description1" hidden>Very very very good exercise 1</p>
                     <p>Second exercise <input type="button" value="Do" onclick="showDescription(2)" class="btn btn-outline-success" name="doExercise2"></p>
                     <p id="description2" hidden>Very very very good exercise 2</p>

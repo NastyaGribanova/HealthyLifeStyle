@@ -9,12 +9,12 @@
 </head>
 <body class="text profile-body">
 
-<div class="card bg-light mb-3" style="width: 500px; border-radius: 10px" >
+<div class="card bg-light mb-3" style="width: 500px; margin-left: 33%; border-radius: 10px" >
     <p style="font-size: 25px " >You can change or add some exercises</p>
 </div>
 
 <table class="table text" align="center">
-    <form method="post" >
+    <form method="post" action="addExercises">
         <tr>
             <td> Sex</td>
             <td> <div class="btn-group">
@@ -51,12 +51,15 @@
     </tr><tr>
         <td>Activity</td>
         <td> <input type="text" name="nameActivity" class="text-form" required></td>
+    </tr><tr>
+        <td>Description</td>
+        <td> <input type="text" name="description" class="text-form" required></td>
     </tr>
 
         <td> <p><input name="save" class="btn btn-outline-success" type="submit" value="Save"></p>
         </td>
     </form>
-    <tr><td><form method="post" >
+    <tr><td><form method="post" action="allExercises">
         <p><input name="showExercises" class="btn btn-outline-success" type="submit" value="Show all exercises"></p></form></td></tr>
 </table>
 

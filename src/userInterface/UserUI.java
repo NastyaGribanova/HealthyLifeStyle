@@ -94,9 +94,7 @@ public class UserUI {
 
     //метод doPost для страницы профиля
     public void profile(HttpServletRequest request, HttpServletResponse response) throws IOException, NoSuchAlgorithmException{
-            //выходим из профиля
 
-        //изменение данных сна и давления
     }
 
 
